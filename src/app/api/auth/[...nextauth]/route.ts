@@ -17,18 +17,15 @@ const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Invalid Data!');
         }
-
         try {
           await connectDB();
         } catch (error) {
           throw new Error('Error in connecting to DB');
         }
-
         const user = await User.findOne({ email: credentials.email });
         if (!user) {
           throw new Error('User does not exist!');
         }
-
         const isValid = await verifyPassword(credentials.password, user.password);
         if (!isValid) {
           throw new Error('Username or password is incorrect!');
@@ -39,7 +36,7 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: '/login',
+    signIn: '/signin',
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
