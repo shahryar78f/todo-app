@@ -1,8 +1,8 @@
 'use client'
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function SigninPage() {
     const [email, setEmail] = useState('');
@@ -10,6 +10,8 @@ function SigninPage() {
     const [error, setError] = useState<string | null>(null);
     const router = useRouter()
 
+    const{status} = useSession()
+    useEffect(()=>{if(status === 'authenticated') router.replace('/') },[status])
 
     const signinHandler = async () => {
         setError(null);
