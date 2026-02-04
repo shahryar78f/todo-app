@@ -45,8 +45,8 @@ function SignupPage() {
         Register
       </button>
       <p className="text-gray-600 font-bold text-base">
-        have an account?{' '}
-        <Link href="/login" className="text-blue-700 hover:text-neutral-500">
+        have an account?
+                <Link href="/signin" className="text-blue-700 hover:text-neutral-500">
           Login
         </Link>
       </p>
