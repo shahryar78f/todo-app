@@ -1,24 +1,32 @@
 'use client'
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import  { useState } from 'react'
+import { useState } from 'react';
 
 function SigninPage() {
     const [email, setEmail] = useState('');
     const [password, SetPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
     const router = useRouter()
 
 
     const signinHandler = async () => {
-        const res = await fetch('/api/auth/signup', {
-          method: 'POST',
-          body: JSON.stringify({ email, password }),
-          headers: { 'Content-Type': 'application/json' },
+        setError(null);
+        const res = await signIn('credentials', {
+          email,
+          password,
+          redirect: false,
         });
-    
-        const data = await res.json();
-        console.log('data:', data);
-        if(data.status === 'success') router.push('/signin')
+
+        if (res?.error) {
+          setError(res.error);
+          return;
+        }
+
+        if (res?.ok) {
+          router.push('/');
+        }
       };
 
   return (
@@ -38,6 +46,11 @@ function SigninPage() {
       value={password}
       onChange={e => SetPassword(e.target.value)}
     />
+    {error && (
+      <p className="text-red-600 text-sm mb-2">
+        {error}
+      </p>
+    )}
     <button
       className="bg-neutral-400 p-1 rounded-lg text-base font-medium text-gray-800 cursor-pointer hover:text-gray-700"
       onClick={signinHandler}
