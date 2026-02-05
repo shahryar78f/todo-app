@@ -4,7 +4,7 @@ import connectDB from '@/utils/connectDB';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
   providers: [
     CredentialsProvider({
