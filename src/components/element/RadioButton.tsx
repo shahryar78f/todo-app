@@ -6,11 +6,12 @@ interface RadioButtonProps {
   value: string;
   title: string;
   children?: ReactNode;
+  className?: string;
 }
 
-function RadioButton({ status, setStatus, value, title, children }: RadioButtonProps) {
+function RadioButton({ status, setStatus, value, title, children, className }: RadioButtonProps) {
   return (
-    <div className='flex gap-2 w-fit p-1.5 text-white  bg-amber-500 text-base font-medium rounded-[8px]'>
+    <div className={`flex gap-2 w-36 justify-between p-1.5 text-white text-base font-medium rounded-[8px] ${className ?? ''}`.trim()}>
       <label htmlFor={value} className='flex items-center gap-2'>
         {children}
         {title}
@@ -20,7 +21,7 @@ function RadioButton({ status, setStatus, value, title, children }: RadioButtonP
         id={value}
         value={value}
         onChange={e => setStatus(e.target.value)}
-        checked={status === 'todo'}
+        checked={status === value}
       />
     </div>
   );
