@@ -10,6 +10,9 @@ import RadioButton from '../element/RadioButton';
 function AddTodoPage() {
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('todo');
+
+const addHandler = () => {};
+
   return (
     <div className="flex  flex-col gap-12">
       <h2 className="flex gap-2 items-center text-xl font-bold ">
@@ -68,7 +71,10 @@ function AddTodoPage() {
           >
             <MdDoneAll />
           </RadioButton>
-          <button className="bg-gray-400 w-fit border border-gray-600 p-1 text-white text-base  rounded-[6px]">
+          <button
+            className="bg-gray-400 w-fit border border-gray-600 p-1 text-white text-base  rounded-[6px]"
+            onClick={addHandler}
+          >
             Add
           </button>
         </div>
