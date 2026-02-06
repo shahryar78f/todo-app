@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { BsAlignStart } from 'react-icons/bs';
 import { GrAddCircle } from 'react-icons/gr';
 import RadioButton from '../element/RadioButton';
+import { FiSettings } from 'react-icons/fi';
+import { AiOutlineFileSearch } from 'react-icons/ai';
+import { MdDoneAll } from 'react-icons/md';
 
 function AddTodoPage() {
   const [title, setTitle] = useState('');
