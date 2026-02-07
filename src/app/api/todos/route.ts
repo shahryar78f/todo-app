@@ -1,25 +1,22 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import User from '@/models/User';
 import connectDB from '@/utils/connectDB';
-import { getServerSession } from 'next-auth';
+import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-   
     await connectDB();
 
-    // گرفتن سشن کاربر لاگین‌شده
-    const session = await getServerSession(authOptions);
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-    if (!session || !session.user?.email) {
+    if (!token?.email) {
       return NextResponse.json(
         { status: 'failed', message: 'you are not logged in!' },
         { status: 401 }
       );
     }
 
-    const user = await User.findOne({ email: session.user.email });
+    const user = await User.findOne({ email: token.email });
 
     if (!user) {
       return NextResponse.json(
