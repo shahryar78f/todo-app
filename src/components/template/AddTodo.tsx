@@ -5,13 +5,44 @@ import { BsAlignStart } from 'react-icons/bs';
 import { FiSettings } from 'react-icons/fi';
 import { GrAddCircle } from 'react-icons/gr';
 import { MdDoneAll } from 'react-icons/md';
+import { toast } from 'react-toastify';
 import RadioButton from '../element/RadioButton';
 
 function AddTodoPage() {
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('todo');
+  const [loading, setLoading] = useState(false);
 
-const addHandler = () => {};
+  const addHandler = async () => {
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) {
+      toast.error('Title is required!');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch('/api/todos', {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify({ title: trimmedTitle, status }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+
+      if (data.status === 'success') {
+        setTitle('');
+        setStatus('todo');
+        toast.success('Todo added!');
+      } else {
+        toast.error(data.message || 'Failed to add todo');
+      }
+    } catch {
+      toast.error('Network error. Try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex  flex-col gap-12">
@@ -72,10 +103,11 @@ const addHandler = () => {};
             <MdDoneAll />
           </RadioButton>
           <button
-            className="bg-gray-400 w-fit border border-gray-600 p-1 text-white text-base  rounded-[6px]"
+            className="bg-gray-400 w-fit border cursor-pointer border-gray-600 p-1 text-white text-base  rounded-[6px] disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={addHandler}
+            disabled={loading}
           >
-            Add
+            {loading ? 'Adding...' : 'Add'}
           </button>
         </div>
       </div>
