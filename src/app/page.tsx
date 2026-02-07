@@ -1,9 +1,9 @@
-import Layout from '@/components/layout/page';
+import HomePage from "@/components/template/HomePage";
 
 export default function Home() {
   return (
     
-      <div className="">todo app</div>
+      <HomePage/>
     
   );
 }
