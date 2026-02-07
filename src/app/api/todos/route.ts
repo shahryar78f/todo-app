@@ -3,6 +3,40 @@ import connectDB from '@/utils/connectDB';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
+export async function GET(req: NextRequest) {
+  try {
+    await connectDB();
+
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    if (!token?.email) {
+      return NextResponse.json(
+        { status: 'failed', message: 'you are not logged in!' },
+        { status: 401 },
+      );
+    }
+
+    const user = await User.findOne({ email: token.email });
+
+    if (!user) {
+      return NextResponse.json(
+        { status: 'failed', message: 'User does not exist!' },
+        { status: 404 },
+      );
+    }
+    console.log(user);
+
+    // TODO: بقیه منطق
+    return NextResponse.json({ status: 'success', data: user });
+  } catch (err: any) {
+    console.error('Error in /api/todos GET:', err);
+    return NextResponse.json(
+      { status: 'failed', message: 'Error while fetching todos' },
+      { status: 500 },
+    );
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     await connectDB();
@@ -17,6 +51,7 @@ export async function POST(req: NextRequest) {
     }
 
     const user = await User.findOne({ email: token.email });
+
 
     if (!user) {
       return NextResponse.json(
