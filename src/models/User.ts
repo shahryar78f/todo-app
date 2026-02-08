@@ -1,5 +1,14 @@
 import { model, models, Schema } from 'mongoose';
 
+const todoSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    status: { type: String, required: true },
+    description: { type: String, default: '' },
+  },
+  { _id: true }
+);
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -12,7 +21,7 @@ const userSchema = new Schema({
   },
   name: String,
   lastName: String,
-  todos: [{ title: String, status: String }],
+  todos: [todoSchema],
   createdAt: { type: Date, default: () => Date.now(), immutable: true },
 });
 
