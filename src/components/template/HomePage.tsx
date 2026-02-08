@@ -40,7 +40,7 @@ function HomePage() {
           <p className="text-white font-semibold">In Progress</p>
         </div>
         {todos.inProgress && (
-          <Tasks data={todos.inProgress ?? []} accentColor="bg-green-400" fetchTodos={fetchTodos} next='review' back='inProgress' />
+          <Tasks data={todos.inProgress ?? []} accentColor="bg-green-400" fetchTodos={fetchTodos} next='review' back='todo' />
         )}
       </div>
       <div className="bg-white rounded-[7px] shadow-2xl w-[22%]">
