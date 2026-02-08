@@ -64,13 +64,13 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { title, status, Description } = body;
+    const { title, status, description } = body;
 
-    if (!title || !status || !Description) {
+    if (!title || !status || !description) {
       return NextResponse.json({ status: 'failed', message: 'Invalid data!' }, { status: 422 });
     }
 
-    user.todos.push({ title, status, Description });
+    user.todos.push({ title, status, description });
     await user.save();
 
     return NextResponse.json({ status: 'success', message: 'Todo created!' }, { status: 201 });
