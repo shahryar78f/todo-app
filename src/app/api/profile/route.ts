@@ -106,3 +106,52 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+
+export async function PUT(req: NextRequest) {
+  try {
+    await connectDB();
+
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    if (!token?.email) {
+      return NextResponse.json(
+        { status: 'failed', message: 'you are not logged in!' },
+        { status: 401 },
+      );
+    }
+
+    const user = await User.findOne({ email: token.email });
+
+    if (!user) {
+      return NextResponse.json(
+        { status: 'failed', message: 'User does not exist!' },
+        { status: 404 },
+      );
+    }
+
+    const body = await req.json();
+    const { name, lastName } = body;
+
+    if (name !== undefined) user.name = name;
+    if (lastName !== undefined) user.lastName = lastName;
+    await user.save();
+
+    return NextResponse.json(
+      { status: 'success', message: 'Profile updated!', data: { name: user.name, lastName: user.lastName } },
+      { status: 200 },
+    );
+  } catch (err: any) {
+    console.error('Error in /api/profile PUT:', err);
+
+    const isDev = process.env.NODE_ENV !== 'production';
+
+    return NextResponse.json(
+      {
+        status: 'failed',
+        message: 'Error while updating profile',
+        ...(isDev && { error: err?.message ?? 'Unknown error' }),
+      },
+      { status: 500 },
+    );
+  }
+}
