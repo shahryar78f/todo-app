@@ -31,6 +31,7 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
           <div>
             <RiMastodonLine />
             <h4 className="text-base font-semibold">{item.title}</h4>
+            <p>{item.description}</p>
             <div className={`flex justify-between ${!back && 'justify-end'}`}>
               {back && (
                 <button
