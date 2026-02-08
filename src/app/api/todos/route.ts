@@ -1,8 +1,12 @@
 import User from '@/models/User';
 import connectDB from '@/utils/connectDB';
 import { sortTodos } from '@/utils/sortTodos';
+import type { TodoStatus } from '@/types/todo';
 import { getToken } from 'next-auth/jwt';
+import mongoose from 'mongoose';
 import { NextRequest, NextResponse } from 'next/server';
+
+const VALID_STATUSES: TodoStatus[] = ['todo', 'inProgress', 'review', 'done'];
 
 export async function GET(req: NextRequest) {
   try {
@@ -116,7 +120,35 @@ export async function PATCH(req: NextRequest) {
         { status: 422 }
       );
     }
-    const result = await User.updateOne({'todos._id': id}, {$set:{'todos.$.status' : status}})
+
+    if (!VALID_STATUSES.includes(status as TodoStatus)) {
+      return NextResponse.json(
+        { status: 'failed', message: 'Invalid status!' },
+        { status: 422 }
+      );
+    }
+
+    let objectId: mongoose.Types.ObjectId;
+    try {
+      objectId = new mongoose.Types.ObjectId(id);
+    } catch {
+      return NextResponse.json(
+        { status: 'failed', message: 'Invalid todo ID!' },
+        { status: 422 }
+      );
+    }
+
+    const result = await User.updateOne(
+      { email: token.email, 'todos._id': objectId },
+      { $set: { 'todos.$.status': status } }
+    );
+
+    if (result.matchedCount === 0) {
+      return NextResponse.json(
+        { status: 'failed', message: 'Todo not found!' },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json({ status: 'success', message: 'Todo updated!' }, { status: 200 });
   } catch (err: any) {
