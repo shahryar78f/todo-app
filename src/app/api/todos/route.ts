@@ -1,9 +1,9 @@
 import User from '@/models/User';
+import type { TodoStatus } from '@/types/todo';
 import connectDB from '@/utils/connectDB';
 import { sortTodos } from '@/utils/sortTodos';
-import type { TodoStatus } from '@/types/todo';
-import { getToken } from 'next-auth/jwt';
 import mongoose from 'mongoose';
+import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 const VALID_STATUSES: TodoStatus[] = ['todo', 'inProgress', 'review', 'done'];
@@ -64,13 +64,13 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { title, status } = body;
+    const { title, status, Description } = body;
 
-    if (!title || !status) {
+    if (!title || !status || !Description) {
       return NextResponse.json({ status: 'failed', message: 'Invalid data!' }, { status: 422 });
     }
 
-    user.todos.push({ title, status });
+    user.todos.push({ title, status, Description });
     await user.save();
 
     return NextResponse.json({ status: 'success', message: 'Todo created!' }, { status: 201 });
