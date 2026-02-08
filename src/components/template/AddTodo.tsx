@@ -10,13 +10,16 @@ import RadioButton from '../element/RadioButton';
 
 function AddTodoPage() {
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [status, setStatus] = useState('todo');
   const [loading, setLoading] = useState(false);
 
   const addHandler = async () => {
     const trimmedTitle = title.trim();
-    if (!trimmedTitle) {
-      toast.error('Title is required!');
+    const trimmedDescription = description.trim();
+
+    if (!trimmedTitle || !trimmedDescription) {
+      toast.error('Title and Description are required!');
       return;
     }
 
@@ -25,13 +28,14 @@ function AddTodoPage() {
       const res = await fetch('/api/todos', {
         method: 'POST',
         credentials: 'include',
-        body: JSON.stringify({ title: trimmedTitle, status }),
+        body: JSON.stringify({ title: trimmedTitle, description: trimmedDescription, status }),
         headers: { 'Content-Type': 'application/json' },
       });
       const data = await res.json();
 
       if (data.status === 'success') {
         setTitle('');
+        setDescription('');
         setStatus('todo');
         toast.success('Todo added!');
       } else {
@@ -59,10 +63,25 @@ function AddTodoPage() {
             id="title"
             type="text"
             value={title}
+            placeholder="title..."
             onChange={e => {
               setTitle(e.target.value);
             }}
-            className="shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] p-1 rounded-[8px] h-10 w-80 focus:outline-none"
+            className="shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] p-1 rounded-[8px] h-10 w-80 placeholder:text-gray-400 focus:outline-none"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="description" className="text-gray-500 text-[18px] font-bold">
+            Description:
+          </label>
+          <textarea
+            id="description"
+            value={description}
+            placeholder='description...'
+            onChange={e => {
+              setDescription(e.target.value);
+            }}
+            className="shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] p-1 placeholder:text-gray-400 rounded-[8px] h-10 w-80 focus:outline-none min-h-32"
           />
         </div>
         <div className="flex flex-col gap-3">
