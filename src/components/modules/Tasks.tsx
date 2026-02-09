@@ -1,4 +1,5 @@
 import { Todo } from '@/types/todo';
+import { api } from '@/utils/axios';
 import { Icon } from '@iconify/react';
 
 interface TasksProps {
@@ -11,13 +12,12 @@ interface TasksProps {
 
 function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
   const chengStatus = async (id: string, status: string) => {
-    const res = await fetch('/api/todos', {
-      method: 'PATCH',
-      body: JSON.stringify({ id, status }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    const data = await res.json();
-    if (data.status === 'success') fetchTodos();
+    try {
+      const { data } = await api.patch('/api/todos', { id, status });
+      if (data.status === 'success') fetchTodos();
+    } catch (error) {
+      console.error('Failed to change todo status', error);
+    }
   };
   return (
     <div className="flex flex-col gap-6 justify-between p-2 pt-4">
