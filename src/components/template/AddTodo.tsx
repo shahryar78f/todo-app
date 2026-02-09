@@ -6,6 +6,7 @@ import { FiSettings } from 'react-icons/fi';
 import { GrAddCircle } from 'react-icons/gr';
 import { MdDoneAll } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import { api } from '@/utils/axios';
 import RadioButton from '../element/RadioButton';
 
 function AddTodoPage() {
@@ -25,13 +26,11 @@ function AddTodoPage() {
 
     setLoading(true);
     try {
-      const res = await fetch('/api/todos', {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify({ title: trimmedTitle, description: trimmedDescription, status }),
-        headers: { 'Content-Type': 'application/json' },
+      const { data } = await api.post('/api/todos', {
+        title: trimmedTitle,
+        description: trimmedDescription,
+        status,
       });
-      const data = await res.json();
 
       if (data.status === 'success') {
         setTitle('');
@@ -41,8 +40,12 @@ function AddTodoPage() {
       } else {
         toast.error(data.message || 'Failed to add todo');
       }
-    } catch {
-      toast.error('Network error. Try again.');
+    } catch (error: any) {
+      const message =
+        error?.response?.data?.message ||
+        error?.message ||
+        'Network error. Try again.';
+      toast.error(message);
     } finally {
       setLoading(false);
     }
