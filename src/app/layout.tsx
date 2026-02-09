@@ -1,5 +1,6 @@
 import AuthProvider from "@/components/AuthProvider";
 import Layout from "@/components/layout/page";
+import QueryProvider from "@/components/providers/QueryProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -32,8 +33,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <Layout>{children}</Layout>
-          <ToastContainer position="top-center" rtl />
+          <QueryProvider>
+            <Layout>{children}</Layout>
+            <ToastContainer position="top-center" rtl />
+          </QueryProvider>
         </AuthProvider>
       </body>
     </html>
