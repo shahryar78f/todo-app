@@ -1,9 +1,7 @@
-import AddTodoPage from '@/components/template/AddTodo'
+import AddTodoPage from '@/components/template/AddTodo';
 
 function AddTodo() {
-  return (
-    <AddTodoPage/>
-  )
+  return <AddTodoPage />;
 }
 
-export default AddTodo
+export default AddTodo;
