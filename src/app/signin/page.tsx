@@ -1,10 +1,7 @@
-import SigninPage from '@/components/template/Signin'
-import React from 'react'
+import SigninPage from '@/app/signin/_components/Signin';
 
 function Signin() {
-  return (
-    <SigninPage/>
-  )
+  return <SigninPage />;
 }
 
-export default Signin
+export default Signin;
