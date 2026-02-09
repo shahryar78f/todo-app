@@ -1,6 +1,5 @@
 import { Todo } from '@/types/todo';
-import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
-import { RiMastodonLine } from 'react-icons/ri';
+import { Icon } from '@iconify/react';
 
 interface TasksProps {
   data: Todo[];
@@ -29,7 +28,7 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
         >
           <span className={`w-[50%] h-[2px] ${accentColor} block`} />
           <div>
-            <RiMastodonLine />
+            <Icon icon="ri:todo-line" />
             <h4 className="text-base font-semibold">{item.title}</h4>
             <p>{item.description}</p>
             <div className={`flex justify-between ${!back && 'justify-end'}`}>
@@ -38,7 +37,7 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
                   className="flex items-center p-0.5 cursor-pointer rounded-sm text-yellow-700 font-semibold bg-amber-200"
                   onClick={() => chengStatus(item._id, back)}
                 >
-                  <BiLeftArrow />
+                  <Icon icon="bx:left-arrow" />
                   Back
                 </button>
               )}
@@ -48,7 +47,7 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
                   onClick={() => chengStatus(item._id, next)}
                 >
                   Next
-                  <BiRightArrow />
+                  <Icon icon="bx:right-arrow" />
                 </button>
               )}
             </div>
