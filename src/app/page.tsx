@@ -1,6 +1,6 @@
 'use client';
 
-import HomePage from "@/components/template/HomePage";
+import HomePage from '@/components/template/HomePage';
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
