@@ -1,10 +1,7 @@
 'use client';
+import { Icon } from '@iconify/react';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { BiMessageSquareAdd } from 'react-icons/bi';
-import { FiLogOut } from 'react-icons/fi';
-import { RxDashboard } from 'react-icons/rx';
-import { VscListSelection } from 'react-icons/vsc';
 
 function Layout({ children }: any) {
   const { status } = useSession();
@@ -21,7 +18,7 @@ function Layout({ children }: any) {
             className="flex items-center gap-2 border font-bold cursor-pointer text-white px-4 h-fit mt-10 py-2 rounded transition-colors duration-200 ease-in-out hover:text-red-400"
           >
             logout
-            <FiLogOut />
+            <Icon icon="icon-park-outline:logout" />
           </button>
         )}
       </header>
@@ -30,15 +27,15 @@ function Layout({ children }: any) {
           <p className="text-2xl font-bold pb-4">welcome 👋</p>
           <ul className="flex flex-col gap-5 text-gray-700 text-base font-medium">
             <li className="flex items-center gap-3">
-              <VscListSelection />
+              <Icon icon="codicon:list-selection" />
               <Link href="/">todos</Link>
             </li>
             <li className="flex items-center gap-3">
-              <BiMessageSquareAdd />
+              <Icon icon="solar:add-folder-outline" />
               <Link href="/add-todo">add todo</Link>
             </li>
             <li className="flex items-center gap-3">
-              <RxDashboard />
+              <Icon icon="lineicons:dashboard-square-1" />
               <Link href="/profile">profile</Link>
             </li>
           </ul>
