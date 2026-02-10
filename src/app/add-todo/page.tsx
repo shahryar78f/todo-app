@@ -1,4 +1,4 @@
-import AddTodoPage from '@/components/template/AddTodo';
+import AddTodoPage from '@/app/add-todo/_components/AddTodo';
 
 function AddTodo() {
   return <AddTodoPage />;
