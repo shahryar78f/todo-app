@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
+import type { TodoStatus } from '@/types/todo';
 
 interface RadioButtonProps {
-  status: string;
-  setStatus: (value: string) => void;
-  value: string;
+  status: TodoStatus;
+  setStatus: (value: TodoStatus) => void;
+  value: TodoStatus;
   title: string;
   children?: ReactNode;
   className?: string;
@@ -20,7 +21,7 @@ function RadioButton({ status, setStatus, value, title, children, className }: R
         type="radio"
         id={value}
         value={value}
-        onChange={e => setStatus(e.target.value)}
+        onChange={e => setStatus(e.target.value as TodoStatus)}
         checked={status === value}
       />
     </div>
