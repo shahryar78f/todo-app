@@ -16,3 +16,11 @@ export interface GetTodoResponse {
   message?: string;
   data?: { todo: Todo };
 }
+
+
+export type GetAllTodosResponse = {
+  status: 'success' | 'failed';
+  data: {
+    todos: Record<string, Todo[]>;  
+  };
+};
