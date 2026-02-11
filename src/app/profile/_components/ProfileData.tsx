@@ -20,7 +20,7 @@ function ProfileData({ data, onEdit }: ProfileDataProps) {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-gray-500 text-sm font-medium">Last Name</span>
-            <p className="text-gray-800 font-semibold text-lg">{data.lastName}</p>
+            <p className="text-gray-800 font-semibold text-lg">{data.lastName }</p>
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-gray-500 text-sm font-medium">Email</span>
