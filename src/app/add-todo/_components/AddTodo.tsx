@@ -1,5 +1,5 @@
 'use client';
-import { useAddTodo } from '@/features/add-todo/hooks/useAddTodo';
+import { useAddTodo } from '@/features/todos/hooks/useAddTodo';
 import type { TodoStatus } from '@/types/todo';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Icon } from '@iconify/react';

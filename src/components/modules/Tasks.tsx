@@ -1,6 +1,7 @@
 import { Todo } from '@/types/todo';
 import { api } from '@/utils/axios';
 import { Icon } from '@iconify/react';
+import Link from 'next/link';
 
 interface TasksProps {
   data: Todo[];
@@ -31,6 +32,14 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
             <Icon icon="ri:todo-line" />
             <h4 className="text-base font-semibold">{item.title}</h4>
             <p>{item.description}</p>
+            <div className="mt-2">
+              <Link
+                href={`/todos/${item._id}`}
+                className="text-sm text-blue-600 hover:underline font-medium"
+              >
+                View details
+              </Link>
+            </div>
             <div className={`flex justify-between ${!back && 'justify-end'}`}>
               {back && (
                 <button
