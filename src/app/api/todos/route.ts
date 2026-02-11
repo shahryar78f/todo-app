@@ -117,14 +117,14 @@ export async function PATCH(req: NextRequest) {
     if (!id || !status) {
       return NextResponse.json(
         { status: 'failed', message: 'Invalid data!' },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
     if (!VALID_STATUSES.includes(status as TodoStatus)) {
       return NextResponse.json(
         { status: 'failed', message: 'Invalid status!' },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
@@ -134,19 +134,19 @@ export async function PATCH(req: NextRequest) {
     } catch {
       return NextResponse.json(
         { status: 'failed', message: 'Invalid todo ID!' },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
     const result = await User.updateOne(
       { email: token.email, 'todos._id': objectId },
-      { $set: { 'todos.$.status': status } }
+      { $set: { 'todos.$.status': status } },
     );
 
     if (result.matchedCount === 0) {
       return NextResponse.json(
         { status: 'failed', message: 'Todo not found!' },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
