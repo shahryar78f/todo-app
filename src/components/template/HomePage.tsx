@@ -1,7 +1,8 @@
 'use client';
 import { SortedTodos } from '@/types/todo';
-import { useEffect, useState } from 'react';
 import Tasks from '../modules/Tasks';
+import { useGetAllTodos } from '@/features/todos/hooks/useGetAllTodos';
+import { useDeleteTodo } from '@/features/todos/hooks/useDeleteTodo';
 
 const initialTodos: SortedTodos = {
   todo: [],
@@ -11,19 +12,25 @@ const initialTodos: SortedTodos = {
 };
 
 function HomePage() {
-  const [todos, setTodos] = useState<SortedTodos>(initialTodos);
+  const { data, isPending, error, refetch } = useGetAllTodos();
+  const { mutate: deleteTodo } = useDeleteTodo();
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
+  const todos: SortedTodos =
+    data?.status === 'success'
+      ? { ...initialTodos, ...(data.data.todos as SortedTodos) }
+      : initialTodos;
 
   const fetchTodos = async () => {
-    const res = await fetch('/api/todos');
-    const data = await res.json();
-    if (data.status === 'success') {
-      setTodos({ ...initialTodos, ...data.data.todos });
-    }
+    await refetch();
   };
+
+  if (isPending) {
+    return <div>Loading todos...</div>;
+  }
+
+  if (error || data?.status === 'failed') {
+    return <div>Failed to load todos.</div>;
+  }
 
   return (
     <div className="flex justify-around w-full ">
@@ -32,7 +39,7 @@ function HomePage() {
           <p className="text-white font-semibold">todo</p>
         </div>
         {todos.todo && (
-          <Tasks data={todos.todo ?? []} accentColor="bg-amber-500" fetchTodos={fetchTodos} next='inProgress' />
+          <Tasks deleteTodo={deleteTodo} data={todos.todo ?? []} accentColor="bg-amber-500" fetchTodos={fetchTodos} next='inProgress' />
         )}
       </div>
       <div className="bg-white rounded-[7px]  shadow-2xl w-[22%] ">
@@ -40,7 +47,7 @@ function HomePage() {
           <p className="text-white font-semibold">In Progress</p>
         </div>
         {todos.inProgress && (
-          <Tasks data={todos.inProgress ?? []} accentColor="bg-green-400" fetchTodos={fetchTodos} next='review' back='todo' />
+          <Tasks deleteTodo={deleteTodo} data={todos.inProgress ?? []} accentColor="bg-green-400" fetchTodos={fetchTodos} next='review' back='todo' />
         )}
       </div>
       <div className="bg-white rounded-[7px] shadow-2xl w-[22%]">
@@ -48,7 +55,7 @@ function HomePage() {
           <p className="text-white font-semibold">Review</p>
         </div>
         {todos.review && (
-          <Tasks data={todos.review ?? []} accentColor="bg-blue-600" fetchTodos={fetchTodos} next='done' back='inProgress' />
+          <Tasks deleteTodo={deleteTodo} data={todos.review ?? []} accentColor="bg-blue-600" fetchTodos={fetchTodos} next='done' back='inProgress' />
         )}
       </div>
       <div className="bg-white rounded-[7px] shadow-2xl w-[22%]">
@@ -56,7 +63,7 @@ function HomePage() {
           <p className="text-white font-semibold">Done</p>
         </div>
         {todos.done && (
-          <Tasks data={todos.done ?? []} accentColor="bg-cyan-400" fetchTodos={fetchTodos} back='review' />
+          <Tasks deleteTodo={deleteTodo} data={todos.done ?? []} accentColor="bg-cyan-400" fetchTodos={fetchTodos} back='review' />
         )}
       </div>
     </div>
