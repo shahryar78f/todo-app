@@ -1,5 +1,6 @@
 import { ProfileData as ProfileDataType } from '@/types/profile';
 import { FiEdit } from 'react-icons/fi';
+import { CgProfile } from 'react-icons/cg';
 
 interface ProfileDataProps {
   data: ProfileDataType;
@@ -13,7 +14,15 @@ function ProfileData({ data, onEdit }: ProfileDataProps) {
         Profile Information
       </h3>
       <div className="flex items-start justify-between">
-        <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-24 h-24 rounded-full bg-gray-100 overflow-hidden flex items-center justify-center">
+            {data.avatar ? (
+              <img src={data.avatar} alt="avatar" className="w-full h-full object-cover" />
+            ) : (
+              <CgProfile className="text-3xl text-gray-400" />
+            )}
+          </div>
+          <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             <span className="text-gray-500 text-sm font-medium">Name</span>
             <p className="text-gray-800 font-semibold text-lg">{data.name}</p>
@@ -35,6 +44,7 @@ function ProfileData({ data, onEdit }: ProfileDataProps) {
           Edit
           <FiEdit />
         </button>
+        </div>
       </div>
     </div>
   );
