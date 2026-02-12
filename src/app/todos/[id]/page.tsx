@@ -1,7 +1,9 @@
 'use client';
 
+import { useDeleteTodo } from '@/features/todos/hooks/useDeleteTodo';
 import { useGetTodo } from '@/features/todos/hooks/useGetTodo';
 import { useUpdateTodo } from '@/features/todos/hooks/useUpdateTodo';
+import { Icon } from '@iconify/react';
 import { useSession } from 'next-auth/react';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -17,6 +19,9 @@ export default function TodoDetailPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
   const todoId = params.id;
+
+  const { mutate: deleteTodo, isPending: isDeleting } = useDeleteTodo();
+
 
   const {
     data,
@@ -58,6 +63,16 @@ export default function TodoDetailPage() {
       });
     }
   }, [todo, reset]);
+
+  const handleDelete = () => {
+    if (!todoId) return;
+
+    deleteTodo(todoId, {
+      onSuccess: () => {
+        router.push('/');
+      },
+    });
+  };
 
   const onSubmit = handleSubmit(values => {
     if (!todoId) return;
@@ -105,8 +120,16 @@ export default function TodoDetailPage() {
         <span className="block h-[2px] w-1/2 bg-blue-500" />
         <div>
           <h1 className="text-2xl font-semibold mb-2">Edit Todo</h1>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleDelete}
+            disabled={isDeleting}
+          >
+            <Icon icon="material-symbols:delete" />
+          </button>
           <p className="text-sm text-gray-500 mb-4">
-            Status:{' '}
+            Status:
             <span className="font-medium capitalize">
               {todo.status === 'inProgress' ? 'In Progress' : todo.status}
             </span>
@@ -127,10 +150,7 @@ export default function TodoDetailPage() {
             </div>
 
             <div className="flex flex-col">
-              <label
-                htmlFor="description"
-                className="text-gray-700 text-sm font-medium mb-1"
-              >
+              <label htmlFor="description" className="text-gray-700 text-sm font-medium mb-1">
                 Description
               </label>
               <textarea
