@@ -1,2 +1,2 @@
-export const addTodoMutationKey = ['todos', 'add'] as const;
+export const todoMutationKey = ['todos', 'add'] as const;
 
