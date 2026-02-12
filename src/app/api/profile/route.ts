@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, lastName, password } = await req.json();
+    const { name, lastName, password, avatar } = await req.json();
 
     if (!password) {
       return NextResponse.json(
@@ -43,12 +43,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    user.name = name;
-    user.lastName = lastName;
+    if (name !== undefined) user.name = name;
+    if (lastName !== undefined) user.lastName = lastName;
+    if (avatar !== undefined) user.avatar = avatar;
     await user.save();
 
-
-    return NextResponse.json({ status: 'success', message: 'Profile updated!' }, { status: 200 });
+    return NextResponse.json(
+      {
+        status: 'success',
+        message: 'Profile updated!',
+        data: { name: user.name, lastName: user.lastName, avatar: user.avatar },
+      },
+      { status: 200 },
+    );
   } catch (err: any) {
     console.error('Error in /api/profile POST:', err);
 
@@ -89,7 +96,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       status: 'success',
-      data: { name: user.name, lastName: user.lastName, email: user.email },
+      data: { name: user.name, lastName: user.lastName, email: user.email, avatar: user.avatar },
     });
   } catch (err: any) {
     console.error('Error in /api/profile GET:', err);
@@ -130,14 +137,19 @@ export async function PUT(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { name, lastName } = body;
+    const { name, lastName, avatar } = body;
 
     if (name !== undefined) user.name = name;
     if (lastName !== undefined) user.lastName = lastName;
+    if (avatar !== undefined) user.avatar = avatar;
     await user.save();
 
     return NextResponse.json(
-      { status: 'success', message: 'Profile updated!', data: { name: user.name, lastName: user.lastName } },
+      {
+        status: 'success',
+        message: 'Profile updated!',
+        data: { name: user.name, lastName: user.lastName, avatar: user.avatar },
+      },
       { status: 200 },
     );
   } catch (err: any) {
