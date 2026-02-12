@@ -21,6 +21,7 @@ const userSchema = new Schema({
   },
   name: String,
   lastName: String,
+  avatar: String,
   todos: [todoSchema],
   createdAt: { type: Date, default: () => Date.now(), immutable: true },
 });
