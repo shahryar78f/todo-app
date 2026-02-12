@@ -23,7 +23,7 @@ function Layout({ children }: any) {
         )}
       </header>
       <div className="flex absolute w-full">
-        <aside className=" pl-10 w-[20%] bg-white p-6 h-full relative left-0 -top-20 rounded-tr-3xl min-h-[calc(100vh)] ">
+        <aside className=" pl-10 w-[20%] bg-white p-6 h-full relative left-0 -top-20 rounded-tr-3xl min-h-[calc(100vh-128px)] ">
           <p className="text-2xl font-bold pb-4">welcome 👋</p>
           <ul className="flex flex-col gap-5 text-gray-700 text-base font-medium">
             <li className="flex items-center gap-3">
