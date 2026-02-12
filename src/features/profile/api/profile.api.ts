@@ -26,6 +26,11 @@ export const createProfile = async (
 export const updateProfile = async (
   payload: UpdateProfilePayload,
 ): Promise<ProfileMutationResponse> => {
-  const { data } = await api.put<ProfileMutationResponse>('/api/profile', payload);
-  return data;
+  try {
+    const { data } = await api.put<ProfileMutationResponse>('/api/profile', payload);
+    return data;
+  } catch (error: any) {
+    const message = error.response?.data?.message || error.message;
+    throw new Error(message);
+  }
 };
