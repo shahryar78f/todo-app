@@ -17,10 +17,24 @@ export interface GetTodoResponse {
   data?: { todo: Todo };
 }
 
-
 export type GetAllTodosResponse = {
   status: 'success' | 'failed';
   data: {
-    todos: Record<string, Todo[]>;  
+    todos: Record<string, Todo[]>;
   };
 };
+
+export interface DeleteTodoResponse {
+  status: 'success' | 'failed';
+  message?: string;
+}
+
+export interface UpdateTodoPayload {
+  title: string;
+  description: string;
+}
+
+export interface UpdateTodoResponse {
+  status: 'success' | 'failed';
+  message?: string;
+}
