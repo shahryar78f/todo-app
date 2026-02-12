@@ -1,3 +1,4 @@
+'use client'
 import { Todo } from '@/types/todo';
 import { api } from '@/utils/axios';
 import { Icon } from '@iconify/react';
@@ -9,9 +10,13 @@ interface TasksProps {
   fetchTodos: () => Promise<void>;
   back?: string;
   next?: string;
+  deleteTodo: (id: string) => void;
 }
 
-function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
+function Tasks({ data, accentColor, fetchTodos, back, next, deleteTodo }: TasksProps) {
+
+
+
   const chengStatus = async (id: string, status: string) => {
     try {
       const { data } = await api.patch('/api/todos', { id, status });
@@ -39,6 +44,8 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
               >
                 View details
               </Link>
+
+              <button onClick={() => deleteTodo(item._id)}>Delete</button>
             </div>
             <div className={`flex justify-between ${!back && 'justify-end'}`}>
               {back && (
