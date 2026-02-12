@@ -4,7 +4,7 @@ export const addTodoSchema = z.object({
   title: z
     .string()
     .min(1, 'Title is required')
-    .min(3, 'Title must be at least 3 characters'),
+    .max(20, 'The title should not be longer than 20 characters.'),
   description: z
     .string()
     .min(1, 'Description is required')
