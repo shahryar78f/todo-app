@@ -1,8 +1,9 @@
 'use client';
-import { SortedTodos } from '@/types/todo';
-import Tasks from '../modules/Tasks';
-import { useGetAllTodos } from '@/features/todos/hooks/useGetAllTodos';
 import { useDeleteTodo } from '@/features/todos/hooks/useDeleteTodo';
+import { useGetAllTodos } from '@/features/todos/hooks/useGetAllTodos';
+import { SortedTodos } from '@/types/todo';
+import { Icon } from '@iconify/react';
+import Tasks from '../modules/Tasks';
 
 const initialTodos: SortedTodos = {
   todo: [],
@@ -25,7 +26,16 @@ function HomePage() {
   };
 
   if (isPending) {
-    return <div>Loading todos...</div>;
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <Icon
+          icon="eos-icons:three-dots-loading"
+          width={100}
+          height={100}
+          className="text-gray-900"
+        />
+      </div>
+    );
   }
 
   if (error || data?.status === 'failed') {
