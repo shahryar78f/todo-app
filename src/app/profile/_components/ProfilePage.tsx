@@ -40,6 +40,7 @@ function ProfilePage() {
               ? {
                   name: data.name,
                   lastName: data.lastName,
+                  avatar: data.avatar,
                 }
               : undefined
           }

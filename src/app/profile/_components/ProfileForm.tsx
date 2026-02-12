@@ -2,6 +2,7 @@ import { useCreateProfile } from '@/features/profile/hooks/useCreateProfile';
 import { useUpdateProfile } from '@/features/profile/hooks/useUpdateProfile';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Icon } from '@iconify/react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { ProfileFormData, profileSchema } from './schema';
@@ -10,6 +11,7 @@ interface ProfileFormProps {
   defaultValues?: {
     name?: string;
     lastName?: string;
+    avatar?: string;
   };
   editMode?: boolean;
   onCancel?: () => void;
@@ -19,6 +21,8 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
@@ -26,8 +30,15 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
       name: defaultValues?.name ?? '',
       lastName: defaultValues?.lastName ?? '',
       password: '',
+      avatar: (defaultValues as any)?.avatar ?? '',
     },
   });
+
+  const [localAvatar, setLocalAvatar] = useState<string | null>(
+    (defaultValues as any)?.avatar ?? null,
+  );
+
+  const avatarValue = watch('avatar');
 
   const { mutate: createProfile, isPending: isCreating } = useCreateProfile();
   const { mutate: updateProfile, isPending: isUpdating } = useUpdateProfile();
@@ -35,7 +46,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
   const onSubmit = (data: ProfileFormData) => {
     if (editMode) {
       updateProfile(
-        { name: data.name, lastName: data.lastName },
+        { name: data.name, lastName: data.lastName, avatar: data.avatar },
         {
           onSuccess: result => {
             if (result.status === 'success') {
@@ -57,7 +68,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
       }
 
       createProfile(
-        { name: data.name, lastName: data.lastName, password: data.password },
+        { name: data.name, lastName: data.lastName, password: data.password, avatar: data.avatar },
         {
           onSuccess: result => {
             if (result.status === 'success') {
@@ -78,6 +89,34 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
 
   return (
     <form className="flex flex-col gap-4 w-[45%]" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="avatar" className="text-gray-500 text-base font-semibold">
+          Avatar
+        </label>
+        <input
+          type="file"
+          id="avatar"
+          accept="image/*"
+          onChange={e => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+              const result = reader.result as string;
+              setValue('avatar', result);
+              setLocalAvatar(result);
+            };
+            reader.readAsDataURL(file);
+          }}
+        />
+        {localAvatar && (
+          <img
+            src={localAvatar}
+            alt="avatar"
+            className="w-24 h-24 rounded-full mt-2 object-cover"
+          />
+        )}
+      </div>
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-1">
           <label htmlFor="name" className="text-gray-500 text-base font-semibold">
