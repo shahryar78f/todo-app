@@ -39,3 +39,13 @@ export interface UpdateTodoResponse {
   status: 'success' | 'failed';
   message?: string;
 }
+
+export interface UpdateTodoStatusPayload {
+  id: string;
+  status: TodoStatus;
+}
+
+export interface UpdateTodoStatusResponse {
+  status: 'success' | 'failed';
+  message?: string;
+}
