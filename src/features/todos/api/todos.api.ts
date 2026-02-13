@@ -7,6 +7,8 @@ import type {
   GetTodoResponse,
   UpdateTodoPayload,
   UpdateTodoResponse,
+  UpdateTodoStatusPayload,
+  UpdateTodoStatusResponse,
 } from '../types/todos.types';
 
 export const addTodo = async (payload: AddTodoPayload): Promise<AddTodoResponse> => {
@@ -34,5 +36,12 @@ export const updateTodo = async (
   payload: UpdateTodoPayload,
 ): Promise<UpdateTodoResponse> => {
   const { data } = await api.patch<UpdateTodoResponse>(`/api/todos/${id}`, payload);
+  return data;
+};
+
+export const updateTodoStatus = async (
+  payload: UpdateTodoStatusPayload,
+): Promise<UpdateTodoStatusResponse> => {
+  const { data } = await api.patch<UpdateTodoStatusResponse>('/api/todos', payload);
   return data;
 };
