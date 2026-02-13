@@ -9,6 +9,7 @@ export interface AddTodoPayload {
 export interface AddTodoResponse {
   status: 'success' | 'failed';
   message?: string;
+  data?: { todo: Todo };
 }
 
 export interface GetTodoResponse {

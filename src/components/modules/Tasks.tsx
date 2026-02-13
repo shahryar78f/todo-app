@@ -1,6 +1,6 @@
 'use client'
 import { Todo } from '@/types/todo';
-import { truncateWords } from '@/utils';
+import { formatDate, truncateWords } from '@/utils';
 import { api } from '@/utils/axios';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
@@ -33,7 +33,10 @@ function Tasks({ data, accentColor, fetchTodos, back, next, deleteTodo }: TasksP
           className="flex flex-col gap-6  p-3 rounded-md bg-gray-50 transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-1 hover:shadow-xl shadow-[0_0_20px_rgba(0,0,0,0.15)]"
           key={item._id}
         >
-          <span className={`w-[50%] h-[2px] ${accentColor} block`} />
+          <div className="flex items-center gap-2">
+            <span className={`w-[50%] h-[2px] ${accentColor} block`} />
+            <span className='flex'><Icon icon='ri:time-line'/> {formatDate(item.createdAt || '')} </span>
+          </div>
           <div className="w-full">
             <Link href={`/todos/${item._id}`} className="">
               <div className="flex justify-between w-full px-1">
