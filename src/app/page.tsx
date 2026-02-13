@@ -10,14 +10,13 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "unauthenticated") {
-      router.replace("/signup");
+    if (status === 'unauthenticated') {
+      router.replace('/signup');
     }
   }, [status, router]);
 
-  if (status === "unauthenticated" || status === "loading") {
+  if (status === 'unauthenticated' || status === 'loading') {
     return null;
   }
-
   return <HomePage />;
 }
