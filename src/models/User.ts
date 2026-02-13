@@ -6,7 +6,7 @@ const todoSchema = new Schema(
     status: { type: String, required: true },
     description: { type: String, default: '' },
   },
-  { _id: true }
+  { _id: true, timestamps: true },
 );
 
 const userSchema = new Schema({
