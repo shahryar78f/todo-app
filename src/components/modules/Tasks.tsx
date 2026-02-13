@@ -1,7 +1,7 @@
 'use client'
+import { useUpdateTodoStatus } from '@/features/todos/hooks/useUpdateTodoStatus';
 import { Todo, TodoStatus } from '@/types/todo';
 import { formatDate, truncateWords } from '@/utils';
-import { useUpdateTodoStatus } from '@/features/todos/hooks/useUpdateTodoStatus';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
@@ -67,7 +67,16 @@ function Tasks({ data, accentColor, fetchTodos, back, next, deleteTodo }: TasksP
                   disabled={isPending}
                 >
                   <Icon icon="bx:left-arrow" />
-                  Back
+                  {isPending ? (
+                    <Icon
+                      icon="eos-icons:three-dots-loading"
+                      width={32}
+                      height={25}
+                      className="text-gray-600"
+                    />
+                  ) : (
+                    'Back'
+                  )}
                 </button>
               )}
               {next && (
@@ -76,7 +85,16 @@ function Tasks({ data, accentColor, fetchTodos, back, next, deleteTodo }: TasksP
                   onClick={() => handleStatusChange(item._id, next)}
                   disabled={isPending}
                 >
-                  Next
+                  {isPending ? (
+                    <Icon
+                      icon="eos-icons:three-dots-loading"
+                      width={32}
+                      height={22}
+                      className="text-green-900"
+                    />
+                  ) : (
+                    'Next'
+                  )}
                   <Icon icon="bx:right-arrow" />
                 </button>
               )}
