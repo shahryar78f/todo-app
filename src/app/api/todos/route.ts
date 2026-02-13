@@ -73,7 +73,16 @@ export async function POST(req: NextRequest) {
     user.todos.push({ title, status, description });
     await user.save();
 
-    return NextResponse.json({ status: 'success', message: 'Todo created!' }, { status: 201 });
+    const newTodo = user.todos[user.todos.length - 1];
+
+    return NextResponse.json(
+      {
+        status: 'success',
+        message: 'Todo created!',
+        data: { todo: newTodo },
+      },
+      { status: 201 },
+    );
   } catch (err: any) {
     console.error('Error in /api/todos POST:', err);
 
