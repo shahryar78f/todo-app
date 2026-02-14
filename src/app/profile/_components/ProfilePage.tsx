@@ -26,10 +26,6 @@ function ProfilePage() {
 
   return (
     <div className="w-full p-4">
-      <h2 className="flex items-center text-[18px] font-bold gap-2 pb-3.5">
-        <CgProfile />
-        profile
-      </h2>
       {data && !isEditing ? (
         <ProfileData data={data} onEdit={handleEdit} />
       ) : (
