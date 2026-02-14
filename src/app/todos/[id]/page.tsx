@@ -74,17 +74,19 @@ export default function TodoDetailPage() {
 
     deleteTodo(todoId, {
       onSuccess: () => {
+        toast.success('Todo deleted successfully ✅');
         router.push('/');
+      },
+      onError: () => {
+        toast.error('Delete failed ❌');
       },
     });
   };
 
   const onSubmit = handleSubmit(values => {
     if (!todoId) return;
-
     const trimmedTitle = values.title.trim();
     const trimmedDescription = values.description.trim();
-
     if (!trimmedTitle || !trimmedDescription) return;
 
     updateTodo(
@@ -244,12 +246,21 @@ export default function TodoDetailPage() {
                   onClick={handleDelete}
                   disabled={isDeleting}
                 >
-                  <Icon
-                    icon="material-symbols:delete"
-                    width={22}
-                    height={22}
-                    className="text-red-500"
-                  />
+                  {isDeleting ? (
+                    <Icon
+                      icon="eos-icons:three-dots-loading"
+                      width={60}
+                      height={40}
+                      className="text-red-600"
+                    />
+                  ) : (
+                    <Icon
+                      icon="material-symbols:delete"
+                      width={22}
+                      height={22}
+                      className="text-red-500"
+                    />
+                  )}
                 </button>
               </div>
             </div>
