@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { ProfileFormData, profileSchema } from './schema';
+import Image from 'next/image';
 
 interface ProfileFormProps {
   defaultValues?: {
@@ -94,6 +95,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
           Avatar
         </label>
         <input
+        className='hidden'
           type="file"
           id="avatar"
           accept="image/*"
@@ -110,10 +112,12 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
           }}
         />
         {localAvatar && (
-          <img
+          <Image  
             src={localAvatar}
             alt="avatar"
-            className="w-24 h-24 rounded-full mt-2 object-cover"
+            width={100}
+            height={100}
+            className="w-28 h-28 rounded-full mt-2 object-cover"
           />
         )}
       </div>
@@ -125,7 +129,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
           <input
             type="text"
             id="name"
-            className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-1 rounded-[6px] focus:outline-none text-gray-700 font-bold"
+            className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-2 h-16 text-2xl rounded-[6px] focus:outline-none text-gray-700 font-bold"
             {...register('name')}
           />
           <p className="min-h-[18px] text-sm text-red-500">{errors.name?.message}</p>
@@ -137,7 +141,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
           <input
             type="text"
             id="lastName"
-            className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-1 rounded-[6px] focus:outline-none text-gray-700 font-bold"
+            className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-2 h-16 text-2xl rounded-[6px] focus:outline-none text-gray-700 font-bold"
             {...register('lastName')}
           />
           <p className="min-h-[18px] text-sm text-red-500">{errors.lastName?.message}</p>
@@ -162,14 +166,14 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
         <button
           type="submit"
           disabled={loading}
-          className="bg-neutral-300 cursor-pointer p-1 rounded-[6px] w-20 text-[18px] font-semibold text-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-blue-400 cursor-pointer p-2 rounded-[6px] w-20 text-2xl font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             <Icon
               icon="eos-icons:three-dots-loading"
               width={40}
               height={27}
-              className="text-gray-600"
+              className="text-white"
             />
           ) : editMode ? (
             'save'
@@ -181,7 +185,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
           <button
             type="button"
             onClick={onCancel}
-            className="bg-gray-200 cursor-pointer p-1 rounded-[6px] px-3 text-[18px] font-semibold text-neutral-700 hover:bg-gray-300"
+            className="bg-gray-200 cursor-pointer p-2 rounded-[6px] px-3 text-2xl font-semibold text-neutral-700 hover:bg-gray-300"
           >
             cancel
           </button>
