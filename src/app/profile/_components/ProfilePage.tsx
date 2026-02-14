@@ -2,7 +2,6 @@
 import { useProfile } from '@/features/profile/hooks/useProfile';
 import { ProfileData as ProfileDataType } from '@/types/profile';
 import { useEffect, useState } from 'react';
-import { CgProfile } from 'react-icons/cg';
 import ProfileData from './ProfileData';
 import ProfileForm from './ProfileForm';
 
@@ -11,6 +10,8 @@ function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
 
   const { data: profileResponse } = useProfile();
+
+  console.log(profileResponse)
 
   useEffect(() => {
     if (profileResponse?.status === 'success' && profileResponse.data) {
