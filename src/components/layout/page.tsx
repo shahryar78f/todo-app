@@ -21,9 +21,10 @@ function Layout({ children }: any) {
     signOut();
   };
   return (
-    <div>
-      <header className="flex justify-between bg-blue-600 w-full p-2 pl-10 h-32">
-        <p className="text-white text-3xl font-bold">TODO APP</p>
+    <div className="hiden xl:block">
+      <header className="flex justify-between ju items-center xl:items-start bg-blue-600 w-full xl:p-2 xl:pl-10 xl:h-32 h-16">
+        <div>iopo</div>
+        <p className="text-white text-3xl font-bold w-[85%] xl:w-fit text-center">TODO APP</p>
         {status === 'authenticated' && (
           <button
             onClick={logoutHandler}
@@ -35,7 +36,7 @@ function Layout({ children }: any) {
         )}
       </header>
       <div className="flex absolute w-full">
-        <aside className=" pl-10 w-[20%] bg-white p-6 h-full relative left-0 -top-20 rounded-tr-3xl min-h-[calc(100vh-128px)] ">
+        <aside className=" pl-10 w-[20%] bg-white p-6 h-full relative left-0 -top-20 rounded-tr-3xl min-h-[calc(100vh-128px)] hidden xl:block">
           <p className="text-2xl font-bold pb-16">welcome 👋</p>
           <div className="flex flex-col gap-4 px-2">
             {profile?.data?.avatar ? (

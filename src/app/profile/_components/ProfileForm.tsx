@@ -154,7 +154,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
             <input
               type="password"
               id="password"
-              className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-1 rounded-[6px] focus:outline-none text-gray-700 font-bold"
+              className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-2 h-16 text-2xl  rounded-[6px] focus:outline-none text-gray-700 font-bold"
               {...register('password')}
             />
             <p className="min-h-[18px] text-sm text-red-500">{errors.password?.message}</p>
