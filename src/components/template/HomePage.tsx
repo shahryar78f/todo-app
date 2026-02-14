@@ -44,7 +44,7 @@ function HomePage() {
 
   return (
     <div className="flex justify-around w-full ">
-      <div className="bg-white  shadow-2xl rounded-[7px] w-[22%]">
+      <div className="self-start  bg-white shadow-2xl rounded-[7px] w-[22%]">
         <div className="bg-amber-500 p-2 rounded-t-[7px] text-center ">
           <p className="text-white font-semibold">todo</p>
         </div>
@@ -52,7 +52,7 @@ function HomePage() {
           <Tasks deleteTodo={deleteTodo} data={todos.todo ?? []} accentColor="bg-amber-500" fetchTodos={fetchTodos} next='inProgress' />
         )}
       </div>
-      <div className="bg-white rounded-[7px]  shadow-2xl w-[22%] ">
+      <div className="self-start rounded-[7px]  shadow-2xl w-[22%] ">
         <div className="bg-green-400 p-2 rounded-t-[7px] text-center ">
           <p className="text-white font-semibold">In Progress</p>
         </div>
@@ -60,7 +60,7 @@ function HomePage() {
           <Tasks deleteTodo={deleteTodo} data={todos.inProgress ?? []} accentColor="bg-green-400" fetchTodos={fetchTodos} next='review' back='todo' />
         )}
       </div>
-      <div className="bg-white rounded-[7px] shadow-2xl w-[22%]">
+      <div className="self-start bg-white rounded-[7px] shadow-2xl w-[22%]">
         <div className="bg-blue-600  p-2 rounded-t-[7px]  text-center ">
           <p className="text-white font-semibold">Review</p>
         </div>
@@ -68,7 +68,7 @@ function HomePage() {
           <Tasks deleteTodo={deleteTodo} data={todos.review ?? []} accentColor="bg-blue-600" fetchTodos={fetchTodos} next='done' back='inProgress' />
         )}
       </div>
-      <div className="bg-white rounded-[7px] shadow-2xl w-[22%]">
+      <div className="self-start bg-white rounded-[7px] shadow-2xl w-[22%]">
         <div className="bg-cyan-400 p-2 rounded-t-[7px]  text-center ">
           <p className="text-white font-semibold">Done</p>
         </div>
