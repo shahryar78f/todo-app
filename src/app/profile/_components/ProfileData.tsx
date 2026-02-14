@@ -1,5 +1,6 @@
 import { ProfileData as ProfileDataType } from '@/types/profile';
-import { FiEdit } from 'react-icons/fi';
+import { Icon } from '@iconify/react';
+import Image from 'next/image';
 import { CgProfile } from 'react-icons/cg';
 
 interface ProfileDataProps {
@@ -9,41 +10,48 @@ interface ProfileDataProps {
 
 function ProfileData({ data, onEdit }: ProfileDataProps) {
   return (
-    <div className="bg-white rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.12)] p-6 w-full max-w-md">
+    <div className="bg-white rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.12)] p-6 w-full max-w-fit">
       <h3 className="text-gray-600 text-sm font-semibold uppercase tracking-wider mb-4 pb-2 border-b border-gray-200">
         Profile Information
       </h3>
-      <div className="flex items-start justify-between">
-        <div className="flex items-center gap-4">
-          <div className="w-24 h-24 rounded-full bg-gray-100 overflow-hidden flex items-center justify-center">
-            {data.avatar ? (
-              <img src={data.avatar} alt="avatar" className="w-full h-full object-cover" />
-            ) : (
-              <CgProfile className="text-3xl text-gray-400" />
-            )}
-          </div>
-          <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
-            <span className="text-gray-500 text-sm font-medium">Name</span>
-            <p className="text-gray-800 font-semibold text-lg">{data.name}</p>
-          </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-gray-500 text-sm font-medium">Last Name</span>
-            <p className="text-gray-800 font-semibold text-lg">{data.lastName }</p>
-          </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-gray-500 text-sm font-medium">Email</span>
-            <p className="text-gray-800 font-semibold text-lg break-all">{data.email}</p>
-          </div>
+      <div className="flex items-center gap-20">
+        <div>
+          {data?.avatar ? (
+            <Image
+              src={data.avatar}
+              alt="avatar"
+              width={100}
+              height={100}
+              className="w-25 h-25 rounded-full object-cover"
+            />
+          ) : (
+            <CgProfile className="text-3xl text-gray-400" />
+          )}
         </div>
-        <button
-          type="button"
-          onClick={onEdit}
-          className="flex items-center gap-2 text-base font-bold text-gray-500 cursor-pointer hover:text-gray-700 mt-1"
-        >
-          Edit
-          <FiEdit />
-        </button>
+        <div>
+          <p className="text-gray-800 text-sm font-semibold uppercase tracking-wider mb-2">
+            full Name:
+          </p>
+          <p className="text-gray-600 text-xl uppercase font-bold tracking-wider mb-2">
+            {data?.name} {data?.lastName}
+          </p>
+        </div>
+        <div>
+          <p className="text-gray-800 text-sm font-semibold uppercase tracking-wider mb-2">
+            Email:
+          </p>
+          <p className="text-gray-600 text-xl uppercase font-bold tracking-wider mb-2">
+            {data?.email}
+          </p>
+        </div>
+
+        <div>
+          <button
+            onClick={onEdit}
+            className="flex items-center gap-2 bg-blue-400 text-white py-2 px-4 rounded"
+          >
+            Edit <Icon icon="line-md:edit-filled" />
+          </button>
         </div>
       </div>
     </div>
