@@ -5,9 +5,12 @@ import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import { CgProfile } from 'react-icons/cg';
 
 function Layout({ children }: any) {
+const [open, setOpen] = useState(false);
+
   const pathname = usePathname();
   const isActive = (path: string, pathname: string) => pathname === path;
 
