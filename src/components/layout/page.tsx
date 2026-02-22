@@ -23,7 +23,9 @@ function Layout({ children }: any) {
   return (
     <div className="hiden xl:block">
       <header className="flex justify-between ju items-center xl:items-start bg-blue-600 w-full xl:p-2 xl:pl-10 xl:h-32 h-16">
-        <div>iopo</div>
+        <div className=" xl:hidden">
+          <Icon icon="charm:menu-hamburger" className="text-white text-3xl"/>
+        </div>
         <p className="text-white text-3xl font-bold w-[85%] xl:w-fit text-center">TODO APP</p>
         {status === 'authenticated' && (
           <button
