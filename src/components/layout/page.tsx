@@ -27,7 +27,7 @@ const [open, setOpen] = useState(false);
     <div className="hiden xl:block">
       <header className="flex justify-between ju items-center xl:items-start bg-blue-600 w-full xl:p-2 xl:pl-10 xl:h-32 h-16">
         <div className=" xl:hidden">
-          <Icon icon="charm:menu-hamburger" className="text-white text-3xl"/>
+          <Icon icon="charm:menu-hamburger" className="text-white text-3xl" onClick={()=>setOpen(!open)}/>
         </div>
         <p className="text-white text-3xl font-bold w-[85%] xl:w-fit text-center">TODO APP</p>
         {status === 'authenticated' && (
