@@ -166,7 +166,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-400 cursor-pointer p-2 rounded-[6px] w-20 text-2xl font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-blue-400 cursor-pointer p-2 rounded-md w-20 text-2xl font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             <Icon
