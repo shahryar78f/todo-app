@@ -9,15 +9,12 @@ import { useState } from 'react';
 import { CgProfile } from 'react-icons/cg';
 
 function Layout({ children }: any) {
-const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const pathname = usePathname();
   const isActive = (path: string, pathname: string) => pathname === path;
 
-
-
   const { data: profile } = useProfile();
-
 
   const { status } = useSession();
   const logoutHandler = () => {
@@ -32,6 +29,21 @@ const [open, setOpen] = useState(false);
             className="text-white text-3xl hover:text-gray-300 ml-2"
             onClick={() => setOpen(!open)}
           />
+          {open && (
+            <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-50">
+              <div className="absolute top-0 left-0 w-64 h-full bg-white">
+                <div className="flex items-center justify-between p-4">
+                  <h2 className="text-2xl font-bold">Menu</h2>
+                  <button onClick={() => setOpen(false)} className="text-2xl font-bold">
+                    <Icon
+                      icon="akar-icons:cross"
+                      className="text-red-600 text-3xl hover:text-gray-300 ml-2"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <p className="text-white text-3xl font-bold w-[85%] xl:w-fit text-center">TODO APP</p>
         {status === 'authenticated' && (
