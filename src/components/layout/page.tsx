@@ -33,7 +33,7 @@ function Layout({ children }: any) {
             <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-50">
               <div className="absolute top-0 left-0 w-64 h-full bg-white">
                 <div className="flex items-center justify-between p-4">
-                  <h2 className="text-2xl font-bold">Menu</h2>
+                  <h2 className="text-2xl font-bold">TODO APP</h2>
                   <button onClick={() => setOpen(false)} className="text-2xl font-bold">
                     <Icon
                       icon="akar-icons:cross"
