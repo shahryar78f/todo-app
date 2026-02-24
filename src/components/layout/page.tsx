@@ -42,6 +42,22 @@ function Layout({ children }: any) {
                   </button>
                 </div>
                 <div>
+                  {profile?.data?.avatar ? (
+                    <Image
+                      src={profile?.data?.avatar}
+                      alt="avatar"
+                      width={20}
+                      height={20}
+                      className="object-cover w-20 h-20 rounded-full"
+                    />
+                  ) : (
+                    <CgProfile className="text-3xl text-gray-400" />
+                  )}
+                  <h4 className="text-base font-medium text-zinc-500 border-b w-fit mb-8">
+                    {profile?.data?.name ? `${profile?.data?.name} ${profile?.data?.lastName}` : ''}
+                  </h4>
+                </div>
+                <div>
                   <ul
                     className={`flex flex-col divide-y divide-gray-400 text-gray-700 text-2xl font-medium ${pathname === '/add-todo' && 'divide-none transition'}`}
                   >
