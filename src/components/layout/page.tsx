@@ -67,24 +67,24 @@ function Layout({ children }: any) {
                     className={`flex flex-col divide-y divide-gray-400 text-gray-700 text-2xl font-medium ${pathname === '/add-todo' && 'divide-none transition'}`}
                   >
                     <li
-                      className={`flex items-center gap-3 py-4 px-3  transition
-           ${isActive('/', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                      className={`flex items-center gap-3 py-4 px-3  transition text-xl
+                  ${isActive('/', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
                       onClick={toggleOpen}
                     >
                       <Icon icon="codicon:list-selection" />
                       <Link href="/">todos</Link>
                     </li>
                     <li
-                      className={`flex items-center gap-3 py-4 px-3  transition
-           ${isActive('/add-todo', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                      className={`flex items-center gap-3 py-4 px-3  transition text-xl
+                    ${isActive('/add-todo', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
                       onClick={toggleOpen}
                     >
                       <Icon icon="solar:add-folder-outline" />
                       <Link href="/add-todo">add todo</Link>
                     </li>
                     <li
-                      className={`flex items-center gap-3 py-4 px-3  transition
-            ${isActive('/profile', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                      className={`flex items-center gap-3 py-4 px-3 transition text-xl
+                     ${isActive('/profile', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
                       onClick={toggleOpen}
                     >
                       <Icon icon="lineicons:dashboard-square-1" />
