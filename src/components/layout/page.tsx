@@ -31,7 +31,7 @@ function Layout({ children }: any) {
           />
           {open && (
             <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-50">
-              <div className="absolute top-0 left-0 w-64 h-full bg-white">
+              <div className="absolute top-0 left-0 w-[50%] h-full bg-white">
                 <div className="flex items-center justify-between p-4">
                   <h2 className="text-2xl font-bold">TODO APP</h2>
                   <button onClick={() => setOpen(false)} className="text-2xl font-bold">
@@ -40,6 +40,33 @@ function Layout({ children }: any) {
                       className="text-red-600 text-3xl hover:text-gray-300 ml-2"
                     />
                   </button>
+                </div>
+                <div>
+                  <ul
+                    className={`flex flex-col divide-y divide-gray-400 text-gray-700 text-2xl font-medium ${pathname === '/add-todo' && 'divide-none transition'}`}
+                  >
+                    <li
+                      className={`flex items-center gap-3 py-4 px-3  transition
+           ${isActive('/', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                    >
+                      <Icon icon="codicon:list-selection" />
+                      <Link href="/">todos</Link>
+                    </li>
+                    <li
+                      className={`flex items-center gap-3 py-4 px-3  transition
+           ${isActive('/add-todo', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                    >
+                      <Icon icon="solar:add-folder-outline" />
+                      <Link href="/add-todo">add todo</Link>
+                    </li>
+                    <li
+                      className={`flex items-center gap-3 py-4 px-3  transition
+            ${isActive('/profile', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                    >
+                      <Icon icon="lineicons:dashboard-square-1" />
+                      <Link href="/profile">profile</Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
