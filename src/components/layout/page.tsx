@@ -69,6 +69,7 @@ function Layout({ children }: any) {
                     <li
                       className={`flex items-center gap-3 py-4 px-3  transition
            ${isActive('/', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                      onClick={toggleOpen}
                     >
                       <Icon icon="codicon:list-selection" />
                       <Link href="/">todos</Link>
@@ -76,6 +77,7 @@ function Layout({ children }: any) {
                     <li
                       className={`flex items-center gap-3 py-4 px-3  transition
            ${isActive('/add-todo', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                      onClick={toggleOpen}
                     >
                       <Icon icon="solar:add-folder-outline" />
                       <Link href="/add-todo">add todo</Link>
@@ -83,6 +85,7 @@ function Layout({ children }: any) {
                     <li
                       className={`flex items-center gap-3 py-4 px-3  transition
             ${isActive('/profile', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
+                      onClick={toggleOpen}
                     >
                       <Icon icon="lineicons:dashboard-square-1" />
                       <Link href="/profile">profile</Link>
