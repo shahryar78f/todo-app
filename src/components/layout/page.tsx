@@ -20,6 +20,11 @@ function Layout({ children }: any) {
   const logoutHandler = () => {
     signOut();
   };
+
+  const toggleOpen = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className="hiden xl:block">
       <header className="flex justify-between ju items-center xl:items-start bg-blue-600 w-full xl:p-2 xl:pl-10 xl:h-32 h-16">
@@ -41,7 +46,7 @@ function Layout({ children }: any) {
                     />
                   </button>
                 </div>
-                <div className='px-4 p-2 flex flex-col gap-2'>
+                <div className="px-4 py-2 flex flex-col gap-2">
                   {profile?.data?.avatar ? (
                     <Image
                       src={profile?.data?.avatar}
