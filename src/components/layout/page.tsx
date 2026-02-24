@@ -41,7 +41,7 @@ function Layout({ children }: any) {
                     />
                   </button>
                 </div>
-                <div>
+                <div className='px-4 p-2 flex flex-col gap-2'>
                   {profile?.data?.avatar ? (
                     <Image
                       src={profile?.data?.avatar}
