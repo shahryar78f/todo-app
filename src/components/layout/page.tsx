@@ -131,7 +131,7 @@ function Layout({ children }: any) {
             className={`flex flex-col divide-y divide-gray-400 text-gray-700 text-2xl font-medium ${pathname === '/add-todo' && 'divide-none transition'}`}
           >
             <li
-              className={`flex items-center gap-3 py-4 px-3  transition
+              className={`flex items-center gap-3 py-4 px-3  transition hover:bg-blue-50 rounded-sm hover:text-black
            ${isActive('/', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
             >
               <Icon icon="codicon:list-selection" />
