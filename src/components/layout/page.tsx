@@ -26,7 +26,7 @@ function Layout({ children }: any) {
   };
 
   return (
-    <div className="hiden xl:block">
+    <div className="hidden xl:block">
       <header className="flex justify-between ju items-center xl:items-start bg-blue-600 w-full xl:p-2 xl:pl-10 xl:h-32 h-16">
         <div className=" xl:hidden">
           <Icon
@@ -138,7 +138,7 @@ function Layout({ children }: any) {
               <Link href="/">todos</Link>
             </li>
             <li
-              className={`flex items-center gap-3 py-4 px-3  transition
+              className={`flex items-center gap-3 py-4 px-3  transition hover:bg-blue-50 rounded-sm hover:text-black
            ${isActive('/add-todo', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
             >
               <Icon icon="solar:add-folder-outline" />
