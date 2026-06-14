@@ -145,7 +145,7 @@ function Layout({ children }: any) {
               <Link href="/add-todo">add todo</Link>
             </li>
             <li
-              className={`flex items-center gap-3 py-4 px-3  transition
+              className={`flex items-center gap-3 py-4 px-3  transition hover:bg-blue-50 rounded-sm hover:text-black
             ${isActive('/profile', pathname) && 'bg-blue-200 text-blue-900 rounded-sm'}`}
             >
               <Icon icon="lineicons:dashboard-square-1" />
