@@ -15,7 +15,7 @@ interface TasksProps {
   deleteTodo: (id: string) => void;
 }
 
-function Tasks({ data, accentColor, fetchTodos, back, next, deleteTodo }: TasksProps) {
+function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
   const router = useRouter();
   const { mutate: chengStatus, isPending } = useUpdateTodoStatus();
 
@@ -65,8 +65,8 @@ function Tasks({ data, accentColor, fetchTodos, back, next, deleteTodo }: TasksP
           <div className="flex items-center justify-between">
             <span className={`w-[50%] h-[2px] ${accentColor} block`} />
             <span className="flex items-center text-neutral-500 font-bold gap-2">
-              <Icon icon="ri:time-line" width={20} height={20} />{' '}
-              {formatDate(item.createdAt || '')}{' '}
+              <Icon icon="ri:time-line" width={20} height={20} />
+              {formatDate(item.createdAt || '')}
             </span>
           </div>
           <div className="w-full">
