@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { ProfileFormData, profileSchema } from './schema';
 import Image from 'next/image';
+import Button from '@/components/ui/Button';
 
 interface ProfileFormProps {
   defaultValues?: {
@@ -163,8 +164,9 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
       </div>
 
       <div className="flex items-center gap-2 mt-2">
-        <button
+        <Button
           type="submit"
+          variant='secondary'
           disabled={loading}
           className="bg-blue-400 cursor-pointer p-2 rounded-md w-20 text-2xl font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -180,15 +182,15 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
           ) : (
             'submit'
           )}
-        </button>
+        </Button>
         {onCancel && (
-          <button
+          <Button
             type="button"
             onClick={onCancel}
             className="bg-gray-200 cursor-pointer p-2 rounded-[6px] px-3 text-2xl font-semibold text-neutral-700 hover:bg-gray-300"
           >
             cancel
-          </button>
+          </Button>
         )}
       </div>
     </form>
