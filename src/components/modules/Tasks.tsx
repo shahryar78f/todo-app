@@ -5,6 +5,7 @@ import { formatDate, truncateWords } from '@/utils';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Button from '../ui/Button';
 
 interface TasksProps {
   data: Todo[];
@@ -45,12 +46,14 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
           className="text-red-500"
         />
         <p className="text-red-500 text-xl font-medium">There are no todos</p>
-        <button
-          className="flex items-center gap-1 justify-center bg-blue-800 w-16 p-1 text-white text-base rounded-[6px]"
+        <Button
+          variant='primary'
+          size='sm'
+          className="flex items-center gap-1 justify-center w-16 p-1 text-white text-base"
           onClick={() => router.push('/add-todo')}
         >
           add <Icon icon="gridicons:add-outline" />
-        </button>
+        </Button>
       </div>
     );
   }
@@ -84,7 +87,9 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
             </Link>
             <div className={`flex justify-between ${!back && 'justify-end'}`}>
               {back && (
-                <button
+                <Button
+                  variant='secondary'
+                  size='sm'
                   className="flex items-center p-0.5 cursor-pointer rounded-sm text-yellow-700 font-semibold bg-amber-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={() => handleStatusChange(item._id, back)}
                   disabled={isPending}
@@ -100,10 +105,10 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
                   ) : (
                     'Back'
                   )}
-                </button>
+                </Button>
               )}
               {next && (
-                <button
+                <Button
                   className="flex items-center p-0.5 cursor-pointer rounded-sm font-semibold text-green-800 bg-green-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={() => handleStatusChange(item._id, next)}
                   disabled={isPending}
@@ -119,7 +124,7 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
                     'Next'
                   )}
                   <Icon icon="bx:right-arrow" />
-                </button>
+                </Button>
               )}
             </div>
           </div>
