@@ -1,3 +1,4 @@
+import Button from '@/components/ui/Button';
 import { ProfileData as ProfileDataType } from '@/types/profile';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
@@ -46,12 +47,13 @@ function ProfileData({ data, onEdit }: ProfileDataProps) {
         </div>
 
         <div>
-          <button
+          <Button
+          variant='primary'
             onClick={onEdit}
-            className="flex items-center gap-2 bg-blue-400 text-white py-2 px-4 rounded"
+            className="flex items-center gap-2  text-white py-2 px-4"
           >
             Edit <Icon icon="line-md:edit-filled" />
-          </button>
+          </Button>
         </div>
       </div>
     </div>
