@@ -1,6 +1,7 @@
 'use client';
 
 import Loading from '@/app/loading';
+import Button from '@/components/ui/Button';
 import { useDeleteTodo } from '@/features/todos/hooks/useDeleteTodo';
 import { useGetTodo } from '@/features/todos/hooks/useGetTodo';
 import { useUpdateTodo } from '@/features/todos/hooks/useUpdateTodo';
@@ -178,17 +179,21 @@ export default function TodoDetailPage() {
               )}
 
               <div className="flex justify-end gap-3 pt-2">
-                <button
+                <Button
                   type="button"
-                  className="px-4 py-2 rounded-md border border-gray-300 text-sm font-medium text-gray-700 bg-gray-300 hover:bg-gray-400"
+                  size='md'
+                  className='h-10 py-4'
+                  variant='tertiary'
                   onClick={() => setIsEditing(false)}
                 >
                   Cancel
-                </button>
-                <button
+                </Button>
+                <Button
                   type="submit"
                   disabled={isSubmitting || isUpdating || !isDirty}
-                  className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium disabled:opacity-60 disabled:cursor-not-allowed hover:bg-blue-700"
+                  variant='primary'
+                  
+                  // className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium disabled:opacity-60 disabled:cursor-not-allowed hover:bg-blue-700"
                 >
                   {isUpdating ? (
                     <Icon
@@ -200,7 +205,7 @@ export default function TodoDetailPage() {
                   ) : (
                     <>Update</>
                   )}
-                </button>
+                </Button>
               </div>
             </form>
           </div>
