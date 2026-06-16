@@ -19,11 +19,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-const baseClasses = 'inline-flex items-center gap-2 rounded-[64px] font-medium transition-colors';
+const baseClasses =
+  'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-300 cursor-pointer disabled:opacity-50 disabled:pointer-events-none';
 
 const variantClasses: Record<Variant, string> = {
   primary: 'bg-[#495CC5] text-white hover:bg-[#3b4aa3] hover:shadow-lg',
-  secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
+  secondary:
+    'bg-neutral-300 text-gray-800 hover:border hover:border-neutral-400 hover:text-gray-700',
   tertiary: 'bg-gray-100 text-gray-800 hover:bg-gray-200',
   transparent: 'bg-transparent text-gray-700',
   danger: 'bg-red-500 text-white hover:bg-red-600',
@@ -48,7 +50,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       href,
       icon,
       iconColor,
-      iconSize=24,
+      iconSize,
       variant = 'primary',
       size = 'md',
       className,
