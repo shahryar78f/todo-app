@@ -12,6 +12,7 @@ import { MdDoneAll } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import RadioButton from './element/RadioButton';
 import { addTodoSchema, type AddTodoFormData } from './schema';
+import Button from '@/components/ui/Button';
 
 function AddTodoPage() {
   const { mutate: addTodo, isPending } = useAddTodo();
@@ -128,9 +129,11 @@ function AddTodoPage() {
               </>
             )}
           />
-          <button
+          <Button
             type="submit"
-            className="bg-neutral-300 text-gray-600  hover:text-gray-800 w-fit hover:shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)]  transition-colors duration-400  cursor-pointer border-gray-600 p-1  text-base  rounded-[6px] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-fit h-8 px-2 text-base"
+            variant='secondary'
+            size='sm'
             disabled={isPending}
           >
             {isPending ? (
@@ -143,7 +146,7 @@ function AddTodoPage() {
             ) : (
               'Add'
             )}
-          </button>
+          </Button>
         </div>
       </form>
     </div>
