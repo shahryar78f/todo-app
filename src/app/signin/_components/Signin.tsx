@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import Button from '@/components/ui/Button';
 import { SigninFormData, signinSchema } from './schema';
 
 function SigninPage() {
@@ -66,9 +67,11 @@ function SigninPage() {
 
           <p className="min-h-[20px] text-sm text-red-500">{errors.password?.message}</p>
         </div>
-        <button
+        <Button
           type="submit"
-          className="bg-neutral-300 hover:border hover:border-neutral-400 transition-colors duration-400  p-1 rounded-lg flex items-center justify-center text-base font-medium w-20 h-8 text-gray-800 cursor-pointer hover:text-gray-700"
+          variant="secondary"
+          size="md"
+          className="w-20 h-8 p-1 text-base"
           disabled={isPending}
         >
           {isPending ? (
@@ -81,7 +84,7 @@ function SigninPage() {
           ) : (
             'Log In'
           )}
-        </button>
+        </Button>
       </form>
       <p className="text-gray-600 font-bold text-base">
         Create an account?
