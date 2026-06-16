@@ -1,4 +1,5 @@
 'use client';
+import Button from '@/components/ui/Button';
 import { useSignup } from '@/features/signUp/hooks/useSignup';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Icon } from '@iconify/react';
@@ -9,7 +10,6 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { signupSchema, type SignupFormData } from './schema';
-import Button from '@/components/ui/Button';
 
 function SignupPage() {
   const router = useRouter();
@@ -66,9 +66,11 @@ function SignupPage() {
           />
           <p className="min-h-[20px] text-sm text-red-500">{errors.password?.message}</p>
         </div>
-        <button
+        <Button
           type="submit"
-          className="flex items-center justify-center bg-neutral-300 hover:border hover:border-neutral-400 transition-colors duration-200 p-1 rounded-lg text-base font-medium text-gray-800 cursor-pointer w-20 h-8 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          variant="secondary"
+          size="md"
+          className="w-20 h-8 p-1 text-base"
           disabled={isPending}
         >
           {isPending ? (
@@ -81,8 +83,7 @@ function SignupPage() {
           ) : (
             'Sign Up'
           )}
-        </button>
-        <Button></Button>
+        </Button>
       </form>
       <p className="text-gray-600 font-bold text-base">
         have an account?
