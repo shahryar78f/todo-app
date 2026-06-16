@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { CgProfile } from 'react-icons/cg';
+import Button from '../ui/Button';
 
 function Layout({ children }: any) {
   const [open, setOpen] = useState(false);
@@ -39,12 +40,12 @@ function Layout({ children }: any) {
               <div className="absolute top-0 left-0 w-[50%] h-full bg-white">
                 <div className="flex items-center justify-between p-4">
                   <h2 className="text-2xl font-bold">TODO APP</h2>
-                  <button onClick={() => setOpen(false)} className="text-2xl font-bold">
+                  <Button onClick={() => setOpen(false)} className="text-2xl font-bold">
                     <Icon
                       icon="akar-icons:cross"
                       className="text-red-600 text-3xl hover:text-gray-300 ml-2"
                     />
-                  </button>
+                  </Button>
                 </div>
                 <div className="px-4 py-2 flex flex-col gap-2">
                   {profile?.data?.avatar ? (
@@ -98,13 +99,13 @@ function Layout({ children }: any) {
         </div>
         <p className="text-white text-3xl font-bold w-[85%] xl:w-fit text-center">TODO APP</p>
         {status === 'authenticated' && (
-          <button
+          <Button
             onClick={logoutHandler}
             className="flex items-center gap-2 border font-bold cursor-pointer text-white px-4 h-fit mt-10 py-2 rounded transition-colors duration-200 ease-in-out hover:text-red-400"
           >
             logout
             <Icon icon="icon-park-outline:logout" />
-          </button>
+          </Button>
         )}
       </header>
       <div className="flex absolute w-full">
