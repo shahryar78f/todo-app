@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { signupSchema, type SignupFormData } from './schema';
+import Button from '@/components/ui/Button';
 
 function SignupPage() {
   const router = useRouter();
@@ -81,6 +82,7 @@ function SignupPage() {
             'Sign Up'
           )}
         </button>
+        <Button></Button>
       </form>
       <p className="text-gray-600 font-bold text-base">
         have an account?
