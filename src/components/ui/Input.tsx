@@ -9,7 +9,6 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'placeh
   placeholder: string;
   language?: Language;
   label: string;
-  name: string;
   className?: string;
   labelClassName?: string;
 }
