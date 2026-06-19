@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import RadioButton from './element/RadioButton';
 import { addTodoSchema, type AddTodoFormData } from './schema';
 import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 
 function AddTodoPage() {
   const { mutate: addTodo, isPending } = useAddTodo();
@@ -60,14 +61,11 @@ function AddTodoPage() {
       </h2>
       <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
-          <label htmlFor="title" className="text-gray-500 text-[18px] font-bold">
-            Title:
-          </label>
-          <input
-            id="title"
+          <Input
+            label="Title"
             type="text"
             placeholder="title..."
-            className="shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] p-1 rounded-[8px] h-10 w-80 placeholder:text-gray-400 focus:outline-none"
+            className="w-80"
             {...register('title')}
           />
           <p className="min-h-[20px] text-sm text-red-500">{errors.title?.message}</p>
