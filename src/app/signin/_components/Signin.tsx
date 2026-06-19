@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 import { SigninFormData, signinSchema } from './schema';
 
 function SigninPage() {
@@ -49,22 +50,23 @@ function SigninPage() {
       <h3 className="text-xl font-bold">login Form</h3>
       <form className="flex flex-col items-center gap-10 w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-1">
-          <input
+          <Input
+            label="Email"
             type="text"
             placeholder="Email"
-            className="p-3 w-60 rounded-sm shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] placeholder:text-gray-400 focus:outline-none "
+            className="w-60"
             {...register('email')}
           />
           <p className="min-h-[20px] text-sm text-red-500">{errors.email?.message}</p>
         </div>
         <div className="flex flex-col gap-1">
-          <input
+          <Input
+            label="Password"
             type="password"
             placeholder="Password"
-            className="p-3 w-60 rounded-sm shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] placeholder:text-gray-400 focus:outline-none"
+            className="w-60"
             {...register('password')}
           />
-
           <p className="min-h-[20px] text-sm text-red-500">{errors.password?.message}</p>
         </div>
         <Button
