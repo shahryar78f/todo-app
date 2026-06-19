@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { ProfileFormData, profileSchema } from './schema';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 
 interface ProfileFormProps {
   defaultValues?: {
@@ -124,38 +125,29 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
       </div>
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-1">
-          <label htmlFor="name" className="text-gray-500 text-base font-semibold">
-            Name
-          </label>
-          <input
+          <Input
+            label="Name"
             type="text"
-            id="name"
-            className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-2 h-16 text-2xl rounded-[6px] focus:outline-none text-gray-700 font-bold"
+            placeholder="Name"
             {...register('name')}
           />
           <p className="min-h-[18px] text-sm text-red-500">{errors.name?.message}</p>
         </div>
         <div className="flex flex-col gap-1">
-          <label htmlFor="lastName" className="text-gray-500 text-base font-semibold">
-            Last Name
-          </label>
-          <input
+          <Input
+            label="Last Name"
             type="text"
-            id="lastName"
-            className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-2 h-16 text-2xl rounded-[6px] focus:outline-none text-gray-700 font-bold"
+            placeholder="Last Name"
             {...register('lastName')}
           />
           <p className="min-h-[18px] text-sm text-red-500">{errors.lastName?.message}</p>
         </div>
         {!editMode && (
           <div className="flex flex-col gap-1">
-            <label htmlFor="password" className="text-gray-500 text-base font-semibold">
-              Password
-            </label>
-            <input
+            <Input
+              label="Password"
               type="password"
-              id="password"
-              className="bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] p-2 h-16 text-2xl  rounded-[6px] focus:outline-none text-gray-700 font-bold"
+              placeholder="Password"
               {...register('password')}
             />
             <p className="min-h-[18px] text-sm text-red-500">{errors.password?.message}</p>
