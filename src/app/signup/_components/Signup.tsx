@@ -1,5 +1,6 @@
 'use client';
 import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 import { useSignup } from '@/features/signUp/hooks/useSignup';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Icon } from '@iconify/react';
@@ -49,19 +50,21 @@ function SignupPage() {
       <h3 className="text-xl font-bold">Registration Form</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center gap-10 w-full">
         <div className="flex flex-col gap-1">
-          <input
+          <Input
+            label="Email"
             type="email"
             placeholder="Email"
-            className="p-3 w-60 rounded-sm shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] placeholder:text-gray-400 focus:outline-none"
+            className="w-60"
             {...register('email')}
           />
           <p className="min-h-[20px] text-sm text-red-500">{errors.email?.message}</p>
         </div>
         <div className="flex flex-col gap-1">
-          <input
+          <Input
+            label="Password"
             type="password"
             placeholder="Password"
-            className="p-3 w-60 rounded-sm shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] placeholder:text-gray-400 focus:outline-none"
+            className="w-60"
             {...register('password')}
           />
           <p className="min-h-[20px] text-sm text-red-500">{errors.password?.message}</p>
