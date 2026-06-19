@@ -2,6 +2,7 @@
 
 import Loading from '@/app/loading';
 import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 import { useDeleteTodo } from '@/features/todos/hooks/useDeleteTodo';
 import { useGetTodo } from '@/features/todos/hooks/useGetTodo';
 import { useUpdateTodo } from '@/features/todos/hooks/useUpdateTodo';
@@ -148,13 +149,9 @@ export default function TodoDetailPage() {
 
             <form onSubmit={onSubmit} className="space-y-4">
               <div className="flex flex-col">
-                <label htmlFor="title" className="text-gray-700 text-sm font-medium mb-1">
-                  Title
-                </label>
-                <input
-                  id="title"
+                <Input
+                  label="Title"
                   type="text"
-                  className="shadow-[inset_0_4px_10px_rgba(0,0,0,0.08)] p-3 rounded-md w-full placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter todo title"
                   {...register('title')}
                 />
