@@ -55,7 +55,7 @@ function AddTodoPage() {
   };
 
   return (
-    <div className="flex  flex-col gap-12 w-full p-4">
+    <div className="flex flex-col gap-12 w-full p-4">
       <h2 className="flex gap-2 items-center text-xl font-bold ">
         <GrAddCircle />
         Add New Todo
