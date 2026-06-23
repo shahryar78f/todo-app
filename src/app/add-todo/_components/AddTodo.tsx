@@ -14,6 +14,7 @@ import RadioButton from './element/RadioButton';
 import { addTodoSchema, type AddTodoFormData } from './schema';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
+import Textarea from '@/components/ui/Textarea';
 
 function AddTodoPage() {
   const { mutate: addTodo, isPending } = useAddTodo();
@@ -71,13 +72,10 @@ function AddTodoPage() {
           <p className="min-h-[20px] text-sm text-red-500">{errors.title?.message}</p>
         </div>
         <div className="flex flex-col">
-          <label htmlFor="description" className="text-gray-500 text-[18px] font-bold">
-            Description:
-          </label>
-          <textarea
-            id="description"
+          <Textarea
+            label="Description"
             placeholder="description..."
-            className="shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] p-1 placeholder:text-gray-400 rounded-[8px] h-10 w-80 focus:outline-none min-h-32"
+            className="shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)]  placeholder:text-gray-400 rounded-[8px] h-10 w-80 focus:outline-none min-h-32"
             {...register('description')}
           />
           <p className="min-h-[20px] text-sm text-red-500">{errors.description?.message}</p>
