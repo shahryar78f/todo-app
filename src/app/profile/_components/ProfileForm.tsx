@@ -94,7 +94,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
     <form className="flex flex-col gap-4 w-[45%]" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-1">
         <label htmlFor="avatar" className="text-gray-500 text-base font-semibold cursor-pointer">
-          Avatar
+          <Icon icon="material-symbols:add-a-photo" width={20} height={20} />
         </label>
         <input
         className='hidden'
