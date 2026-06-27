@@ -11,8 +11,6 @@ function ProfilePage() {
 
   const { data: profileResponse } = useProfile();
 
-  console.log(profileResponse)
-
   useEffect(() => {
     if (profileResponse?.status === 'success' && profileResponse.data) {
       setData(profileResponse.data);
