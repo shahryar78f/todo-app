@@ -93,7 +93,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
   return (
     <form className="flex flex-col gap-4 w-[45%]" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-1">
-        <label htmlFor="avatar" className="text-gray-500 text-base font-semibold">
+        <label htmlFor="avatar" className="text-gray-500 text-base font-semibold cursor-pointer">
           Avatar
         </label>
         <input
