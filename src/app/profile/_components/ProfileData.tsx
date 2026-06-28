@@ -23,7 +23,7 @@ function ProfileData({ data, onEdit }: ProfileDataProps) {
               alt="avatar"
               width={100}
               height={100}
-              className="w-25 h-25 rounded-full object-cover"
+              className="w-20 h-20 rounded-full object-cover"
             />
           ) : (
             <CgProfile className="text-3xl text-gray-400" />
