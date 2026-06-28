@@ -27,7 +27,7 @@ function Layout({ children }: any) {
   };
 
   return (
-    <div className="hidden xl:block">
+    <div className="">
       <header className="flex justify-between ju items-center xl:items-start bg-blue-600 w-full xl:p-2 xl:pl-10 xl:h-32 h-16">
         <div className=" xl:hidden">
           <Icon
@@ -40,12 +40,12 @@ function Layout({ children }: any) {
               <div className="absolute top-0 left-0 w-[50%] h-full bg-white">
                 <div className="flex items-center justify-between p-4">
                   <h2 className="text-2xl font-bold">TODO APP</h2>
-                  <Button onClick={() => setOpen(false)} className="text-2xl font-bold">
+                  <button onClick={() => setOpen(false)} className="text-2xl rounded-xl p-0.5 bg-gray-300 font-bold" >
                     <Icon
                       icon="akar-icons:cross"
-                      className="text-red-600 text-3xl hover:text-gray-300 ml-2"
+                      className="text-red-500 text-3xl hover:text-red-600 "
                     />
-                  </Button>
+                  </button>
                 </div>
                 <div className="px-4 py-2 flex flex-col gap-2">
                   {profile?.data?.avatar ? (
