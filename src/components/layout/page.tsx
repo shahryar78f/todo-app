@@ -27,7 +27,7 @@ function Layout({ children }: any) {
   };
 
   return (
-    <div className="">
+    <div>
       <header className="flex justify-between ju items-center xl:items-start bg-blue-600 w-full xl:p-2 xl:pl-10 xl:h-32 h-16">
         <div className="xl:hidden">
           <Icon
@@ -37,7 +37,7 @@ function Layout({ children }: any) {
           />
           {open && (
             <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-50">
-              <div className="absolute top-0 left-0 w-[50%] h-full bg-white">
+              <div className="absolute top-0 left-0 w-[55%] h-full bg-white">
                 <div className="flex items-center justify-between p-4">
                   <h2 className="text-2xl font-bold">TODO APP</h2>
                   <button
