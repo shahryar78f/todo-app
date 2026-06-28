@@ -115,7 +115,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
       <div className="flex flex-col gap-1">
         <label
           htmlFor="avatar"
-          className="relative text-gray-500 text-base font-semibold cursor-pointer w-fit flex flex-col items-center justify-center gap-2 border border-dashed border-gray-300 rounded-2xl p-2 hover:bg-gray-100 hover:border-gray-400 transition-all overflow-hidden"
+          className="relative text-gray-500 text-base font-semibold cursor-pointer w-fit h-25 flex flex-col items-center justify-center gap-2 border border-dashed border-gray-300 rounded-2xl p-2 hover:bg-gray-100 hover:border-gray-400 transition-all overflow-hidden"
         >
           {localAvatar ? (
             <Image
@@ -123,7 +123,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
               alt="avatar"
               width={112}
               height={112}
-              className="w-28 h-28 rounded-full object-cover"
+              className="w-20 h-20 rounded-full object-cover"
             />
           ) : (
             <>
