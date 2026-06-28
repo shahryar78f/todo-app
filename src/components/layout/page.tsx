@@ -29,7 +29,7 @@ function Layout({ children }: any) {
   return (
     <div className="">
       <header className="flex justify-between ju items-center xl:items-start bg-blue-600 w-full xl:p-2 xl:pl-10 xl:h-32 h-16">
-        <div className=" xl:hidden">
+        <div className="xl:hidden">
           <Icon
             icon="charm:menu-hamburger"
             className="text-white text-3xl hover:text-gray-300 ml-2"
@@ -40,7 +40,10 @@ function Layout({ children }: any) {
               <div className="absolute top-0 left-0 w-[50%] h-full bg-white">
                 <div className="flex items-center justify-between p-4">
                   <h2 className="text-2xl font-bold">TODO APP</h2>
-                  <button onClick={() => setOpen(false)} className="text-2xl rounded-xl p-0.5 bg-gray-300 font-bold" >
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="text-2xl rounded-xl p-0.5 bg-gray-300 font-bold"
+                  >
                     <Icon
                       icon="akar-icons:cross"
                       className="text-red-500 text-3xl hover:text-red-600 "
@@ -92,16 +95,28 @@ function Layout({ children }: any) {
                       <Link href="/profile">profile</Link>
                     </li>
                   </ul>
+                  <div className="p-2 w-fit flex flex-col h-20 justify-end">
+                    <Button
+                      onClick={logoutHandler}
+                      variant='danger'
+                      className="bg-white text-red-600 border "
+                    >
+                      logout
+                      <Icon icon="icon-park-outline:logout" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
           )}
         </div>
-        <p className="text-white text-3xl font-bold w-[85%] xl:w-fit text-center">TODO APP</p>
+        <div className="flex items-center mr-8 xl:mr-0 justify-center w-full xl:block">
+          <p className="text-white text-3xl font-bold  xl:w-fit text-center">TODO APP</p>
+        </div>
         {status === 'authenticated' && (
           <Button
             onClick={logoutHandler}
-            className="flex items-center gap-2 border font-bold cursor-pointer text-white px-4 h-fit mt-10 py-2 rounded transition-colors duration-200 ease-in-out hover:text-red-400"
+            className="hidden xl:flex items-center  gap-2 border font-bold cursor-pointer text-white px-4 h-fit mt-10 py-2 rounded transition-colors duration-200 ease-in-out hover:text-red-400"
           >
             logout
             <Icon icon="icon-park-outline:logout" />
