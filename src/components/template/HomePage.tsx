@@ -3,6 +3,7 @@ import { useDeleteTodo } from '@/features/todos/hooks/useDeleteTodo';
 import { useGetAllTodos } from '@/features/todos/hooks/useGetAllTodos';
 import { SortedTodos } from '@/types/todo';
 import { Icon } from '@iconify/react';
+import TodoColumn from '../modules/TodoColumn';
 import Tasks from '../modules/Tasks';
 
 const initialTodos: SortedTodos = {
@@ -43,15 +44,15 @@ function HomePage() {
   }
 
   return (
-    <div className="flex justify-around w-full ">
-      <div className="self-start  bg-white shadow-2xl rounded-[7px] w-[22%]">
-        <div className="bg-amber-500 p-2 rounded-t-[7px] text-center ">
-          <p className="text-white font-semibold">todo</p>
-        </div>
-        {todos.todo && (
-          <Tasks deleteTodo={deleteTodo} data={todos.todo ?? []} accentColor="bg-amber-500" fetchTodos={fetchTodos} next='inProgress' />
-        )}
-      </div>
+    <div className="flex flex-col xl:flex-row justify-around w-full">
+      <TodoColumn
+        title="todo"
+        accentColor="bg-amber-500"
+        data={todos.todo ?? []}
+        deleteTodo={deleteTodo}
+        fetchTodos={fetchTodos}
+        next="inProgress"
+      />
       <div className="self-start rounded-[7px]  shadow-2xl w-[22%] ">
         <div className="bg-green-400 p-2 rounded-t-[7px] text-center ">
           <p className="text-white font-semibold">In Progress</p>
