@@ -4,7 +4,6 @@ import { useGetAllTodos } from '@/features/todos/hooks/useGetAllTodos';
 import { SortedTodos } from '@/types/todo';
 import { Icon } from '@iconify/react';
 import TodoColumn from '../modules/TodoColumn';
-import Tasks from '../modules/Tasks';
 
 const initialTodos: SortedTodos = {
   todo: [],
@@ -44,7 +43,7 @@ function HomePage() {
   }
 
   return (
-    <div className="flex flex-col xl:flex-row justify-around w-full">
+    <div className="flex flex-col gap-6 xl:gap-0 xl:flex-row justify-around w-full">
       <TodoColumn
         title="todo"
         accentColor="bg-amber-500"
@@ -53,30 +52,33 @@ function HomePage() {
         fetchTodos={fetchTodos}
         next="inProgress"
       />
-      <div className="self-start rounded-[7px]  shadow-2xl w-[22%] ">
-        <div className="bg-green-400 p-2 rounded-t-[7px] text-center ">
-          <p className="text-white font-semibold">In Progress</p>
-        </div>
-        {todos.inProgress && (
-          <Tasks deleteTodo={deleteTodo} data={todos.inProgress ?? []} accentColor="bg-green-400" fetchTodos={fetchTodos} next='review' back='todo' />
-        )}
-      </div>
-      <div className="self-start bg-white rounded-[7px] shadow-2xl w-[22%]">
-        <div className="bg-blue-600  p-2 rounded-t-[7px]  text-center ">
-          <p className="text-white font-semibold">Review</p>
-        </div>
-        {todos.review && (
-          <Tasks deleteTodo={deleteTodo} data={todos.review ?? []} accentColor="bg-blue-600" fetchTodos={fetchTodos} next='done' back='inProgress' />
-        )}
-      </div>
-      <div className="self-start bg-white rounded-[7px] shadow-2xl w-[22%]">
-        <div className="bg-cyan-400 p-2 rounded-t-[7px]  text-center ">
-          <p className="text-white font-semibold">Done</p>
-        </div>
-        {todos.done && (
-          <Tasks deleteTodo={deleteTodo} data={todos.done ?? []} accentColor="bg-cyan-400" fetchTodos={fetchTodos} back='review' />
-        )}
-      </div>
+      <TodoColumn
+        title="In Progress"
+        accentColor="bg-green-400"
+        data={todos.inProgress ?? []}
+        deleteTodo={deleteTodo}
+        fetchTodos={fetchTodos}
+        back="todo"
+        next="review"
+      />
+      <TodoColumn
+        title="Review"
+        accentColor="bg-blue-600"
+        data={todos.review ?? []}
+        deleteTodo={deleteTodo}
+        fetchTodos={fetchTodos}
+        back="inProgress"
+        next="done"
+      />
+
+      <TodoColumn
+        title="Done"
+        accentColor="bg-cyan-400"
+        data={todos.done ?? []}
+        deleteTodo={deleteTodo}
+        fetchTodos={fetchTodos}
+        back="review"
+      />
     </div>
   );
 }
