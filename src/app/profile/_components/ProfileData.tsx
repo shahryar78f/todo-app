@@ -11,11 +11,11 @@ interface ProfileDataProps {
 
 function ProfileData({ data, onEdit }: ProfileDataProps) {
   return (
-    <div className="bg-white rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.12)] p-6 w-full max-w-fit">
+    <div className="bg-white rounded-xl shadow-[0_0_25px_rgba(0,0,0,0.12)] p-6 w-full xl:max-w-fit">
       <h3 className="text-gray-600 text-sm font-semibold uppercase tracking-wider mb-4 pb-2 border-b border-gray-200">
         Profile Information
       </h3>
-      <div className="flex items-center gap-20">
+      <div className="flex flex-col xl:flex-row xl:items-center gap-10 xl:gap-20">
         <div>
           {data?.avatar ? (
             <Image
