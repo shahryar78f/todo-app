@@ -46,7 +46,7 @@ function SignupPage() {
   };
 
   return (
-    <div className="bg-white shadow-2xl flex flex-col items-center justify-center gap-10 rounded-2xl p-16 w-fit mt-20">
+    <div className="bg-white shadow-2xl flex flex-col items-center justify-center gap-4 xl:gap-10 rounded-2xl p-16 w-[90%] xl:w-fit mt-12  xl:mt-20">
       <h3 className="text-xl font-bold">Registration Form</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center gap-10 w-full">
         <div className="flex flex-col gap-1">
