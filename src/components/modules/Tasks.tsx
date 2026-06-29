@@ -62,7 +62,7 @@ function Tasks({ data, accentColor, fetchTodos, back, next }: TasksProps) {
     <div className="flex flex-col gap-6 justify-between p-2 pt-4 ">
       {data.map(item => (
         <div
-          className="flex flex-col gap-6  p-3 rounded-md self-auto bg-gray-50 transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-1 hover:shadow-xl shadow-[0_0_20px_rgba(0,0,0,0.15)]"
+          className="flex flex-col gap-6  p-3 rounded-md self-auto bg-gray-50 transition-all duration-300 ease-out hover:scale-[1] hover:-translate-y-0.5 hover:shadow-xl shadow-[0_0_20px_rgba(0,0,0,0.15)]"
           key={item._id}
         >
           <div className="flex items-center justify-between">
