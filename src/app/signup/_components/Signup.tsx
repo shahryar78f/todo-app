@@ -20,10 +20,15 @@ function SignupPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
   });
+
+  const email = watch('email');
+  const password = watch('password');
+  const isFormValid = Boolean(email?.trim()) && (password?.length ?? 0) >= 5;
 
   useEffect(() => {
     if (status === 'authenticated') router.replace('/');
@@ -71,7 +76,7 @@ function SignupPage() {
         </div>
         <Button
           type="submit"
-          variant="secondary"
+          variant={isFormValid ? 'primary' : 'secondary'}
           size="md"
           className="w-20 h-8 p-1 text-base"
           disabled={isPending}
