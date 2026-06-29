@@ -1,4 +1,6 @@
 'use client';
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
 import { useSignin } from '@/features/signin/hooks/useSignin';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Icon } from '@iconify/react';
@@ -8,8 +10,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import Button from '@/components/ui/Button';
-import Input from '@/components/ui/Input';
 import { SigninFormData, signinSchema } from './schema';
 
 function SigninPage() {
@@ -24,10 +24,15 @@ function SigninPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<SigninFormData>({
     resolver: zodResolver(signinSchema),
   });
+  const email = watch('email');
+  const password = watch('password');
+  const isFormValid = Boolean(email?.trim()) && (password?.length ?? 0) >= 5;
+
 
   const onSubmit = (data: SigninFormData) => {
     signin(data, {
@@ -71,7 +76,7 @@ function SigninPage() {
         </div>
         <Button
           type="submit"
-          variant="secondary"
+          variant={isFormValid ? 'primary' : 'secondary'}
           size="md"
           className="w-20 h-8 p-1 text-base"
           disabled={isPending}
