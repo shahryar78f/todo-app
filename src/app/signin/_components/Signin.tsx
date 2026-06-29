@@ -86,7 +86,7 @@ function SigninPage() {
               icon="eos-icons:three-dots-loading"
               width={60}
               height={40}
-              className="text-gray-600"
+              className="text-gray-100"
             />
           ) : (
             'Log In'
