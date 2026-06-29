@@ -111,7 +111,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
   const loading = isCreating || isUpdating;
 
   return (
-    <form className="flex flex-col gap-4 w-[45%]" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-6 xl:gap-4 w-[45%]" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-1">
         <label
           htmlFor="avatar"
@@ -188,14 +188,14 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
           type="submit"
           variant="secondary"
           disabled={loading}
-          className="bg-blue-400 cursor-pointer p-2 rounded-md w-20 text-2xl font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-blue-400 cursor-pointer xl:p-2 rounded-md xl:w-20 xl:text-2xl font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             <Icon
               icon="eos-icons:three-dots-loading"
               width={40}
               height={27}
-              className="text-white"
+              className="text-white w-7 h-5 xl:w-20 xl:h-8"
             />
           ) : editMode ? (
             'save'
@@ -207,7 +207,7 @@ function ProfileForm({ defaultValues, editMode = false, onCancel }: ProfileFormP
           <Button
             type="button"
             onClick={onCancel}
-            className="bg-gray-200 cursor-pointer p-2 rounded-[6px] px-3 text-2xl font-semibold text-neutral-700 hover:bg-gray-300"
+            className="bg-gray-200 cursor-pointer xl:p-2 rounded-[6px]  xl:text-2xl font-semibold text-neutral-700 hover:bg-gray-300"
           >
             cancel
           </Button>

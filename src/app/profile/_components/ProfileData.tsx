@@ -15,7 +15,7 @@ function ProfileData({ data, onEdit }: ProfileDataProps) {
       <h3 className="text-gray-600 text-sm font-semibold uppercase tracking-wider mb-4 pb-2 border-b border-gray-200">
         Profile Information
       </h3>
-      <div className="flex flex-col xl:flex-row xl:items-center gap-10 xl:gap-20">
+      <div className="flex flex-col xl:flex-row xl:items-center gap-7 xl:gap-20">
         <div>
           {data?.avatar ? (
             <Image
