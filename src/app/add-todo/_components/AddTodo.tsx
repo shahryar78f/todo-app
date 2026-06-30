@@ -129,7 +129,7 @@ function AddTodoPage() {
           </div>
           <Button
             type="submit"
-            className="w-fit h-8 px-2 text-base"
+            className="xl:w-fit xl:h-8  px-2 p-2 text-xl xl:text-base"
             variant='secondary'
             size='sm'
             disabled={isPending}
