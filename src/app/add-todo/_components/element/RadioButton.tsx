@@ -12,7 +12,7 @@ interface RadioButtonProps {
 
 function RadioButton({ status, setStatus, value, title, children, className }: RadioButtonProps) {
   return (
-    <div className={`flex gap-2 w-36 justify-between p-1.5 text-white text-base font-medium rounded-[8px] ${className ?? ''}`.trim()}>
+    <div className={`flex gap-2 w-full xl:w-36 justify-between p-1.5 text-white text-base font-medium rounded-[8px] ${className ?? ''}`.trim()}>
       <label htmlFor={value} className='flex items-center gap-2'>
         {children}
         {title}
