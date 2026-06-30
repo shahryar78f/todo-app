@@ -55,12 +55,12 @@ function AddTodoPage() {
   };
 
   return (
-    <div className="flex flex-col gap-12 w-full p-4">
+    <div className="flex flex-col gap-4 xl:gap-12 w-full p-4">
       <h2 className="flex gap-2 items-center text-xl font-bold ">
         <GrAddCircle />
         Add New Todo
       </h2>
-      <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col gap-3 xl:gap-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
           <Input
             label="Title"
@@ -81,6 +81,7 @@ function AddTodoPage() {
           <p className="min-h-[20px] text-sm text-red-500">{errors.description?.message}</p>
         </div>
         <div className="flex flex-col gap-3">
+          <div className="grid grid-cols-2 gap-3 xl:flex xl:flex-col">
           <Controller
             control={control}
             name="status"
@@ -125,6 +126,7 @@ function AddTodoPage() {
               </>
             )}
           />
+          </div>
           <Button
             type="submit"
             className="w-fit h-8 px-2 text-base"
