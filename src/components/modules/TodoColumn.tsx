@@ -23,7 +23,7 @@ function TodoColumn({
   className = '',
 }: TodoColumnProps) {
   return (
-    <div className={`self-start bg-white shadow-2xl rounded-[7px] w-full xl:w-[22%] ${className}`}>
+    <div className={`self-start bg-white shadow-2xl rounded-[7px] w-full ${className}`}>
       <div className={`${accentColor} p-2 rounded-t-[7px] text-center`}>
         <p className="text-white font-semibold">{title}</p>
       </div>
