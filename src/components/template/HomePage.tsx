@@ -43,7 +43,7 @@ function HomePage() {
   }
 
   return (
-    <div className="flex flex-col gap-6 xl:gap-0 xl:flex-row justify-around w-full pt-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full pt-4">
       <TodoColumn
         title="todo"
         accentColor="bg-amber-500"
